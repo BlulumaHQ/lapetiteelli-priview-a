@@ -19,14 +19,11 @@ import {
   Clock3,
   Flame,
   Leaf,
-  MessageCircle,
-  MoveRight,
   Sprout,
   Users,
 } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 
-const lineHref = siteMeta.lineUrl;
 
 const collectionStories = [
   {

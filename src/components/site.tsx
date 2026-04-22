@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Instagram, Menu, MessageCircle, X } from "lucide-react";
+import { ArrowRight, Menu, MessageCircle, X } from "lucide-react";
 import * as React from "react";
 
 import logoImage from "@/assets/logo-la-petite-elli.png";
@@ -278,16 +278,10 @@ function NavLink({ to, label }: { to: "/collection" | "/about" | "/order" | "/we
 }
 
 function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
-  if (to.startsWith("/")) {
-    return (
-      <Link to={to} className="editorial-link text-sm text-ink-body">
-        {children}
-      </Link>
-    );
-  }
+  const external = !to.startsWith("/") && !to.startsWith("mailto:");
 
   return (
-    <a href={to} target="_blank" rel="noreferrer" className="editorial-link text-sm text-ink-body">
+    <a href={to} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined} className="editorial-link text-sm text-ink-body">
       {children}
     </a>
   );

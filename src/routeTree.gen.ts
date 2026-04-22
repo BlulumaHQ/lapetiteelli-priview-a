@@ -14,7 +14,7 @@ import { Route as OrderRouteImport } from './routes/order'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CollectionRouteImport } from './routes/collection.'
+import { Route as CollectionSlugRouteImport } from './routes/collection.$slug'
 
 const WellnessRoute = WellnessRouteImport.update({
   id: '/wellness',
@@ -41,9 +41,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CollectionRoute = CollectionRouteImport.update({
-  id: '/',
-  path: '/',
+const CollectionSlugRoute = CollectionSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => CollectionRoute,
 } as any)
 
@@ -53,14 +53,15 @@ export interface FileRoutesByFullPath {
   '/collection': typeof CollectionRouteWithChildren
   '/order': typeof OrderRoute
   '/wellness': typeof WellnessRoute
-  '/collection/': typeof CollectionRoute
+  '/collection/$slug': typeof CollectionSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/collection': typeof CollectionRouteWithChildren
   '/order': typeof OrderRoute
   '/wellness': typeof WellnessRoute
-  '/collection': typeof CollectionRoute
+  '/collection/$slug': typeof CollectionSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,7 +70,7 @@ export interface FileRoutesById {
   '/collection': typeof CollectionRouteWithChildren
   '/order': typeof OrderRoute
   '/wellness': typeof WellnessRoute
-  '/collection/': typeof CollectionRoute
+  '/collection/$slug': typeof CollectionSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -79,9 +80,15 @@ export interface FileRouteTypes {
     | '/collection'
     | '/order'
     | '/wellness'
-    | '/collection/'
+    | '/collection/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/order' | '/wellness' | '/collection'
+  to:
+    | '/'
+    | '/about'
+    | '/collection'
+    | '/order'
+    | '/wellness'
+    | '/collection/$slug'
   id:
     | '__root__'
     | '/'
@@ -89,7 +96,7 @@ export interface FileRouteTypes {
     | '/collection'
     | '/order'
     | '/wellness'
-    | '/collection/'
+    | '/collection/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -137,22 +144,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/collection/': {
-      id: '/collection/'
-      path: '/'
-      fullPath: '/collection/'
-      preLoaderRoute: typeof CollectionRouteImport
+    '/collection/$slug': {
+      id: '/collection/$slug'
+      path: '/$slug'
+      fullPath: '/collection/$slug'
+      preLoaderRoute: typeof CollectionSlugRouteImport
       parentRoute: typeof CollectionRoute
     }
   }
 }
 
 interface CollectionRouteChildren {
-  CollectionRoute: typeof CollectionRoute
+  CollectionSlugRoute: typeof CollectionSlugRoute
 }
 
 const CollectionRouteChildren: CollectionRouteChildren = {
-  CollectionRoute: CollectionRoute,
+  CollectionSlugRoute: CollectionSlugRoute,
 }
 
 const CollectionRouteWithChildren = CollectionRoute._addFileChildren(

@@ -12,6 +12,12 @@ export const siteMeta = {
   description:
     "An editorial boutique world of coffee, objects, art, and everyday rituals shaped with quiet luxury.",
   lineUrl: "https://line.me/",
+  instagramUrl: "https://instagram.com/lapetiteelli",
+  facebookUrl: "#",
+  tiktokUrl: "#",
+  xiaohongshuUrl: "#",
+  fatherArtUrl: "https://johnlinart.ca/Art",
+  blulumaUrl: "https://bluluma.com/",
 };
 
 const navItems = [
@@ -340,7 +346,13 @@ function SiteFooter() {
               title="Connect"
               links={[
                 { label: "Order via LINE", to: "/order" },
-                { label: "Instagram", to: "https://instagram.com/lapetiteelli" },
+                { label: "Instagram", to: siteMeta.instagramUrl },
+                { label: "Facebook Page", to: siteMeta.facebookUrl },
+                { label: "TikTok", to: siteMeta.tiktokUrl },
+                { label: "小紅書", to: siteMeta.xiaohongshuUrl },
+                { label: "LINE", to: siteMeta.lineUrl },
+                { label: "Elli's father art", to: siteMeta.fatherArtUrl },
+                { label: "Bluluma", to: siteMeta.blulumaUrl },
                 { label: "hello@lapetiteelli.com", to: "mailto:hello@lapetiteelli.com" },
               ]}
             />
@@ -348,9 +360,17 @@ function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-border pt-6 text-sm text-ink-muted md:flex-row md:items-center md:justify-between">
-          <p>© 2026 la petite.elli · Vancouver</p>
-          <div className="flex items-center gap-5">
-            <a href="https://instagram.com/lapetiteelli" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink-primary">
+          <div className="flex flex-col gap-2">
+            <p>© 2026 la petite.elli · Vancouver</p>
+            <p>
+              Web Design by{" "}
+              <a href={siteMeta.blulumaUrl} target="_blank" rel="noreferrer" className="editorial-link text-ink-primary">
+                Bluluma
+              </a>
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-5">
+            <a href={siteMeta.instagramUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink-primary">
               <Instagram className="h-4 w-4" /> Instagram
             </a>
             <a href={siteMeta.lineUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink-primary">

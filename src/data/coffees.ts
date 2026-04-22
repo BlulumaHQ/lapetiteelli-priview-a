@@ -243,6 +243,6 @@ This is a cup for the people who already know what they like, and who like thing
 
 export const coffeeSeries = ['All', 'Morning', 'Daily', 'Evening'];
 
-export function getCoffeeBySlug(slug) {
+export function getCoffeeBySlug(slug: string) {
   return coffees.find((coffee) => coffee.slug === slug);
 }

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Bag, Instagram, Menu, MessageCircle, X } from "lucide-react";
+import { ArrowRight, Instagram, Menu, MessageCircle, ShoppingBag, X } from "lucide-react";
 import * as React from "react";
 
 import logoImage from "@/assets/logo-la-petite-elli.png";
@@ -200,7 +200,7 @@ function SiteHeader() {
               to="/shop"
               className="hidden items-center gap-2 border border-border bg-background/70 px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-ink-primary lg:inline-flex"
             >
-              <Bag className="h-4 w-4" />
+              <ShoppingBag className="h-4 w-4" />
               Cart <span className="text-ink-muted">(0)</span>
             </Link>
             <a

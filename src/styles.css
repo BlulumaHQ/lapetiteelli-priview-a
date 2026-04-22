@@ -75,10 +75,18 @@
   --color-coffee-happy-hour: var(--coffee-happy-hour);
   --color-coffee-midnight: var(--coffee-midnight);
   --color-coffee-mandheling: var(--coffee-mandheling);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-line-soft: var(--line-soft);
+  --color-overlay: var(--overlay);
+  --color-warm-highlight: var(--warm-highlight);
+  --color-package-shell: var(--package-shell);
+  --color-package-border: var(--package-border);
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
   --shadow-editorial: var(--shadow-editorial);
   --shadow-soft: var(--shadow-soft);
+  --shadow-float: var(--shadow-float);
 }
 
 :root {
@@ -101,40 +109,48 @@
   --coffee-happy-hour: oklch(0.419 0.124 20.947);
   --coffee-midnight: oklch(0.272 0.04 257.661);
   --coffee-mandheling: oklch(0.232 0.011 58.769);
-  --background: var(--cream-base);
+  --surface: oklch(0.958 0.014 78.54);
+  --surface-strong: oklch(0.931 0.02 73.12);
+  --line-soft: oklch(0.88 0.016 72.44);
+  --overlay: oklch(0.251 0.021 47.84);
+  --warm-highlight: oklch(0.734 0.036 72.65);
+  --package-shell: oklch(0.908 0.02 74.84);
+  --package-border: oklch(0.837 0.021 72.84);
+  --background: var(--cream-soft);
   --foreground: var(--ink-primary);
-  --card: var(--cream-soft);
+  --card: var(--surface);
   --card-foreground: var(--ink-primary);
-  --popover: var(--cream-soft);
+  --popover: var(--surface);
   --popover-foreground: var(--ink-primary);
   --primary: var(--ink-primary);
   --primary-foreground: var(--cream-soft);
-  --secondary: var(--cream-soft);
+  --secondary: var(--surface-strong);
   --secondary-foreground: var(--ink-primary);
-  --muted: var(--cream-deep);
+  --muted: var(--surface-strong);
   --muted-foreground: var(--ink-muted);
-  --accent: var(--cream-soft);
+  --accent: var(--surface);
   --accent-foreground: var(--ink-primary);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: var(--cream-soft);
-  --border: var(--accent-line);
-  --input: oklch(0.925 0.018 79.957);
+  --border: var(--line-soft);
+  --input: var(--surface-strong);
   --ring: oklch(0.421 0.062 26.024);
   --chart-1: var(--coffee-breakfast);
   --chart-2: var(--coffee-sunrise);
   --chart-3: var(--coffee-golden-hour);
   --chart-4: var(--coffee-happy-hour);
   --chart-5: var(--coffee-midnight);
-  --sidebar: var(--cream-soft);
+  --sidebar: var(--surface);
   --sidebar-foreground: var(--ink-primary);
   --sidebar-primary: var(--ink-primary);
   --sidebar-primary-foreground: var(--cream-soft);
-  --sidebar-accent: var(--cream-base);
+  --sidebar-accent: var(--cream-soft);
   --sidebar-accent-foreground: var(--ink-primary);
-  --sidebar-border: var(--accent-line);
+  --sidebar-border: var(--line-soft);
   --sidebar-ring: var(--ring);
   --shadow-editorial: 0 18px 44px -28px color-mix(in oklab, var(--ink-primary) 24%, transparent);
   --shadow-soft: 0 10px 28px -24px color-mix(in oklab, var(--ink-primary) 18%, transparent);
+  --shadow-float: 0 26px 54px -36px color-mix(in oklab, var(--ink-primary) 30%, transparent);
 }
 
 .dark {
@@ -231,6 +247,36 @@
 
   .editorial-divider {
     border-top: 1px solid var(--color-accent-line);
+  }
+
+  .section-space {
+    padding-block: 6rem;
+  }
+
+  @media (min-width: 48rem) {
+    .section-space {
+      padding-block: 8rem;
+    }
+  }
+
+  .tint-panel {
+    background-color: color-mix(in oklab, var(--color-surface) 88%, transparent);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .cinematic-overlay {
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--color-overlay) 18%, transparent) 0%, color-mix(in oklab, var(--color-overlay) 38%, transparent) 100%),
+      linear-gradient(90deg, color-mix(in oklab, var(--color-background) 35%, transparent) 0%, transparent 45%, color-mix(in oklab, var(--color-background) 18%, transparent) 100%);
+  }
+
+  .editorial-kicker {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
   }
 
   .eyebrow-label {

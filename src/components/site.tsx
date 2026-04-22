@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Menu, MessageCircle, X } from "lucide-react";
+import { ArrowRight, Instagram, Menu, MessageCircle, ShoppingBag, X } from "lucide-react";
 import * as React from "react";
 
 import logoImage from "@/assets/logo-la-petite-elli.png";
@@ -8,17 +8,17 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const siteMeta = {
-  title: "La Petite Elli — Boutique Coffee Collection · Vancouver",
+  title: "la petite.elli — Boutique Lifestyle Collections",
   description:
-    "Eight small-batch specialty coffees, crafted for every moment of your day. From Vancouver, since 2009.",
+    "An editorial boutique world of coffee, objects, art, and everyday rituals shaped with quiet luxury.",
   lineUrl: "https://line.me/",
 };
 
 const navItems = [
+  { label: "Shop", to: "/shop" as const },
   { label: "Collection", to: "/collection" as const },
   { label: "About", to: "/about" as const },
-  { label: "Order", to: "/order" as const },
-  { label: "Wellness", to: "/wellness" as const },
+  { label: "Journal", to: "/journal" as const },
 ];
 
 export function SEO({
@@ -67,20 +67,27 @@ export function EditorialReveal({
   children,
   className,
   delay = 0,
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  style?: React.CSSProperties;
 }) {
   const prefersReducedMotion = useReducedMotion();
 
   if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
+    return (
+      <div className={className} style={style}>
+        {children}
+      </div>
+    );
   }
 
   return (
     <motion.div
       className={className}
+      style={style}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -134,7 +141,7 @@ export function SectionLabel({ children }: { children: React.ReactNode }) {
 
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-cream-base text-ink-body">
+    <div className="min-h-screen bg-background text-ink-body">
       <SiteHeader />
       <main>{children}</main>
       <SiteFooter />
@@ -162,13 +169,13 @@ function SiteHeader() {
     <>
       <header
         className={cn(
-          "sticky top-0 z-40 border-b border-transparent transition-colors duration-300",
-          isScrolled ? "bg-cream-soft/95 backdrop-blur-sm border-accent-line" : "bg-transparent",
+          "sticky top-0 z-40 border-b border-transparent transition-colors duration-500",
+          isScrolled ? "border-border bg-background/88 backdrop-blur-sm" : "bg-transparent",
         )}
       >
-        <div className="container-editorial flex h-20 items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+        <div className="container-editorial grid h-20 grid-cols-[auto_1fr_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
           <div className="hidden items-center gap-8 lg:flex">
-            {navItems.slice(0, 2).map((item) => (
+            {navItems.map((item) => (
               <NavLink key={item.to} to={item.to} label={item.label} />
             ))}
           </div>
@@ -176,34 +183,45 @@ function SiteHeader() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="inline-flex h-10 w-10 items-center justify-center border border-accent-line text-ink-primary lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center border border-border bg-background/70 text-ink-primary lg:hidden"
             aria-label="Open menu"
           >
             <Menu className="h-5 w-5" />
           </button>
 
-          <Link to="/" className="justify-self-center">
-            <Logo size="md" />
+          <Link to="/" className="justify-self-center text-center">
+            <span className="font-serif text-[1.7rem] font-light tracking-[0.02em] text-ink-primary">
+              la petite.elli
+            </span>
           </Link>
 
-          <div className="hidden items-center justify-end gap-8 lg:flex">
-            <NavLink to="/order" label="Order" />
-            <Button variant="editorialGhost" size="editorial" asChild>
-              <a href={siteMeta.lineUrl} target="_blank" rel="noreferrer">
-                Order via LINE <ArrowRight className="h-4 w-4" />
-              </a>
-            </Button>
+          <div className="flex items-center justify-end gap-2 lg:gap-3">
+            <Link
+              to="/shop"
+              className="hidden items-center gap-2 border border-border bg-background/70 px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-ink-primary lg:inline-flex"
+            >
+              <ShoppingBag className="h-4 w-4" />
+              Cart <span className="text-ink-muted">(0)</span>
+            </Link>
+            <a
+              href={siteMeta.lineUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden items-center gap-2 border border-border bg-background/70 px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-ink-primary md:inline-flex"
+              aria-label="Open LINE"
+            >
+              <MessageCircle className="h-4 w-4" />
+              LINE
+            </a>
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="inline-flex h-10 w-10 items-center justify-center border border-border bg-background/70 text-ink-primary"
+              aria-label="Open site menu"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
           </div>
-
-          <a
-            href={siteMeta.lineUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex h-10 w-10 items-center justify-center border border-accent-line text-ink-primary lg:hidden"
-            aria-label="Open LINE"
-          >
-            <MessageCircle className="h-5 w-5" />
-          </a>
         </div>
       </header>
 
@@ -214,24 +232,24 @@ function SiteHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 z-50 bg-cream-base"
+            className="fixed inset-0 z-50 bg-background"
           >
             <div className="container-editorial flex min-h-screen flex-col py-8">
               <div className="flex items-center justify-between">
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex h-10 w-10 items-center justify-center border border-accent-line text-ink-primary"
+                  className="inline-flex h-10 w-10 items-center justify-center border border-border text-ink-primary"
                   aria-label="Close menu"
                 >
                   <X className="h-5 w-5" />
                 </button>
-                <Logo size="sm" />
+                <span className="font-serif text-[1.45rem] font-light text-ink-primary">la petite.elli</span>
                 <a
                   href={siteMeta.lineUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center border border-accent-line text-ink-primary"
+                  className="inline-flex h-10 w-10 items-center justify-center border border-border text-ink-primary"
                   aria-label="Open LINE"
                 >
                   <MessageCircle className="h-5 w-5" />
@@ -248,6 +266,9 @@ function SiteHeader() {
                     {item.label}
                   </Link>
                 ))}
+                <Link to="/order" className="font-serif text-3xl font-light text-ink-body">
+                  Ordering
+                </Link>
                 <a
                   href={siteMeta.lineUrl}
                   target="_blank"
@@ -265,12 +286,12 @@ function SiteHeader() {
   );
 }
 
-function NavLink({ to, label }: { to: "/collection" | "/about" | "/order" | "/wellness"; label: string }) {
+function NavLink({ to, label }: { to: "/shop" | "/collection" | "/about" | "/journal"; label: string }) {
   return (
     <Link
       to={to}
       activeProps={{ className: "text-ink-primary opacity-100" }}
-      className="text-sm uppercase tracking-[0.1em] text-ink-primary/70 hover:text-ink-primary"
+      className="text-[11px] uppercase tracking-[0.16em] text-ink-primary/68 hover:text-ink-primary"
     >
       {label}
     </Link>
@@ -289,51 +310,86 @@ function FooterLink({ to, children }: { to: string; children: React.ReactNode })
 
 function SiteFooter() {
   return (
-    <footer className="bg-cream-deep text-ink-body">
-      <div className="container-editorial py-20">
-        <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-4">
-          <div className="space-y-6">
-            <Logo size="md" />
-            <p className="font-serif text-3xl font-light leading-tight text-ink-primary">
-              From Sunrise to Midnight
-              <br />
-              Crafted for Every Moment.
+    <footer className="bg-surface-strong text-ink-body">
+      <div className="container-editorial py-20 md:py-24">
+        <div className="grid gap-14 border-t border-border pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+          <div className="space-y-7">
+            <div className="space-y-3">
+              <p className="editorial-kicker">Newsletter</p>
+              <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
+                Notes on coffee, objects, art, and the atmosphere around them.
+              </h2>
+            </div>
+            <p className="max-w-[620px] text-base leading-[1.8] text-ink-body">
+              A quiet letter from Vancouver with new releases, journal entries, studio updates, and early access to future boutique collections.
             </p>
-            <p className="text-sm uppercase tracking-[0.14em] text-ink-muted">EST. 2009 · Vancouver, BC</p>
+            <NewsletterSignup />
           </div>
 
-          <FooterColumn
-            title="Collection"
-            links={[
-              { label: "Morning Series", to: "/collection" },
-              { label: "Daily Series", to: "/collection" },
-              { label: "Evening Series", to: "/collection" },
-              { label: "Signature Set (coming soon)", to: "/wellness" },
-            ]}
-          />
-          <FooterColumn
-            title="Explore"
-            links={[
-              { label: "About", to: "/about" },
-              { label: "Order via LINE", to: "/order" },
-              { label: "FAQ", to: "/order" },
-            ]}
-          />
-          <FooterColumn
-            title="Connect"
-            links={[
-              { label: "LINE Order Group", to: siteMeta.lineUrl },
-              { label: "Instagram @lapetiteelli", to: "https://instagram.com/lapetiteelli" },
-              { label: "Email hello@lapetiteelli.com", to: "mailto:hello@lapetiteelli.com" },
-            ]}
-          />
+          <div className="grid gap-10 sm:grid-cols-2">
+            <FooterColumn
+              title="Navigate"
+              links={[
+                { label: "Shop", to: "/shop" },
+                { label: "Collections", to: "/collection" },
+                { label: "About", to: "/about" },
+                { label: "Journal", to: "/journal" },
+              ]}
+            />
+            <FooterColumn
+              title="Connect"
+              links={[
+                { label: "Order via LINE", to: "/order" },
+                { label: "Instagram", to: "https://instagram.com/lapetiteelli" },
+                { label: "hello@lapetiteelli.com", to: "mailto:hello@lapetiteelli.com" },
+              ]}
+            />
+          </div>
         </div>
 
-        <div className="mt-16 border-t border-accent-line pt-6 text-center text-sm text-ink-muted">
-          © 2026 La Petite Elli · Small batch coffee, made with care in Vancouver.
+        <div className="mt-14 flex flex-col gap-4 border-t border-border pt-6 text-sm text-ink-muted md:flex-row md:items-center md:justify-between">
+          <p>© 2026 la petite.elli · Vancouver</p>
+          <div className="flex items-center gap-5">
+            <a href="https://instagram.com/lapetiteelli" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink-primary">
+              <Instagram className="h-4 w-4" /> Instagram
+            </a>
+            <a href={siteMeta.lineUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink-primary">
+              <MessageCircle className="h-4 w-4" /> LINE
+            </a>
+          </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function NewsletterSignup() {
+  const [email, setEmail] = React.useState("");
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const nextEmail = email.trim();
+    const href = `mailto:hello@lapetiteelli.com?subject=${encodeURIComponent("Newsletter Sign Up")}&body=${encodeURIComponent(`Please add this email to the la petite.elli newsletter list:\n\n${nextEmail || "[your email]"}`)}`;
+    window.location.href = href;
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
+      <label className="sr-only" htmlFor="newsletter-email">
+        Email address
+      </label>
+      <input
+        id="newsletter-email"
+        type="email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+        placeholder="Email address"
+        className="h-12 min-w-0 flex-1 border border-border bg-background px-4 text-sm text-ink-primary outline-none placeholder:text-ink-muted focus:border-ink-primary"
+      />
+      <Button variant="editorialPrimary" size="editorial" type="submit">
+        Join Newsletter <ArrowRight className="h-4 w-4" />
+      </Button>
+    </form>
   );
 }
 

@@ -1,0 +1,248 @@
+export const coffees = [
+  {
+    slug: 'breakfast',
+    nameEn: 'Breakfast',
+    nameZh: '晨光特調',
+    series: 'Morning',
+    type: 'Exclusive Blend',
+    typeZh: '精品拼配',
+    accentColor: '#C9A961',
+    accentName: 'Champagne Gold',
+    origin: 'Brazil & Africa',
+    originZh: '巴西 / 非洲',
+    roast: 'Light–Medium Roast',
+    roastZh: '淺中焙至中焙',
+    weight: '340g',
+    flavorTags: ['Bright', 'Nutty', 'Smooth'],
+    flavorProfile: 'Layered notes of cocoa, roasted nuts, and toasted pecan, with a soft fruit blossom sweetness.',
+    flavorProfileZh: '明亮活潑，帶有可可、核果與烘烤山核桃層次，口感細膩柔甜。',
+    aroma: 'Warm cocoa, roasted nuts, and subtle fruit blossom sweetness.',
+    body: 'Medium body with vibrant, balanced acidity.',
+    finish: 'Smooth, sweet, and lingering with a soft nutty finish.',
+    tagline: 'Awaken Bright. Begin Right.',
+    taglineZh: '喚醒晨光，優雅啟程',
+    storyTitle: 'For the first hour of the day.',
+    story: `Breakfast was created for the moment between waking and beginning. It's the cup you reach for when the apartment is still half-dark, when the kettle's whistle is the loudest sound in the room, when the day still belongs only to you.
+
+We chose Brazilian beans for their gentle sweetness and African beans for their soft brightness — together they create a cup that's awake without being aggressive. Bright enough to clear the night, warm enough to feel like a hand on your shoulder.
+
+Drink it black, drink it with milk, drink it slowly while reading something you actually want to read.`,
+    bestEnjoyed: 'Between 6 and 8 in the morning, before the world starts asking things of you.',
+  },
+  {
+    slug: 'sunrise',
+    nameEn: 'Sunrise',
+    nameZh: '日昇特調',
+    series: 'Morning',
+    type: 'Exclusive Blend',
+    typeZh: '精品拼配',
+    accentColor: '#C77B3D',
+    accentName: 'Warm Orange',
+    origin: 'Colombia & Guatemala',
+    originZh: '哥倫比亞 / 瓜地馬拉',
+    roast: 'Medium Roast',
+    roastZh: '中焙',
+    weight: '340g',
+    flavorTags: ['Chocolate', 'Spice', 'Citrus'],
+    flavorProfile: 'Rich dark chocolate layered with malt sweetness, warm cinnamon spice, and a hint of orange peel.',
+    flavorProfileZh: '濃郁黑巧克力融合麥芽甜香、肉桂暖辛香與淡雅橙皮尾調。',
+    aroma: 'Dark cocoa, baking spice, and caramelized citrus zest.',
+    body: 'Medium to high body with low, rounded acidity.',
+    finish: 'Velvety, warm, and satisfyingly smooth.',
+    tagline: 'Warmth in Every Rising Moment.',
+    taglineZh: '溫暖，隨晨光綻放',
+    storyTitle: 'For the second cup, when the morning has begun.',
+    story: `Sunrise is the cup that arrives once the day has started moving. The kettle has been on twice. The first emails have been read. There's a kind of warmth that settles in around 8 AM — not the soft warmth of waking up, but the steadier warmth of being awake.
+
+We built Sunrise around Colombian and Guatemalan beans for that exact feeling: rich, slightly spiced, deeply comforting. There's chocolate in here, and a faint thread of cinnamon, and an orange peel finish that catches you just as you're putting the cup down.
+
+It's the coffee equivalent of pulling on a sweater you've owned for years.`,
+    bestEnjoyed: 'Around 8 AM, with the second slice of toast and a notebook nearby.',
+  },
+  {
+    slug: 'golden-hour',
+    nameEn: 'Golden Hour',
+    nameZh: '鎏光特調',
+    series: 'Morning',
+    type: 'Exclusive Blend',
+    typeZh: '精品拼配',
+    accentColor: '#B8862B',
+    accentName: 'Amber',
+    origin: 'Colombia, Guatemala & Brazil',
+    originZh: '哥倫比亞 / 瓜地馬拉 / 巴西',
+    roast: 'Medium Roast',
+    roastZh: '中焙',
+    weight: '340g',
+    flavorTags: ['Balanced', 'Sweet', 'Soft'],
+    flavorProfile: 'A beautifully rounded cup with gentle sweetness, chocolate undertones, and warm nutty notes.',
+    flavorProfileZh: '柔和甜感結合巧克力底蘊與堅果暖香，平衡圓潤。',
+    aroma: 'Milk chocolate, toasted almonds, and caramel sweetness.',
+    body: 'Medium body with balanced acidity.',
+    finish: 'Smooth, comforting, and effortlessly approachable.',
+    tagline: 'Smooth Light in Every Sip.',
+    taglineZh: '每一口，溫柔閃耀',
+    storyTitle: 'For the late morning, when the light turns gold.',
+    story: `There's a specific kind of light that happens around 10 AM in Vancouver — when the sun has finally cleared the seawall and everything in your kitchen turns honey-colored for about thirty minutes. Golden Hour was named for that.
+
+This is our most balanced, approachable cup — a three-origin blend designed to please almost anyone. Milk chocolate, toasted almond, soft caramel sweetness. No sharp edges. No demands. Just a quiet, comfortable cup that meets you wherever you are.
+
+If a friend asks "which one should I try first?", this is the answer.`,
+    bestEnjoyed: 'Late morning, when the light turns honey-colored and the day softens.',
+  },
+  {
+    slug: 'yirgacheffe-bloom',
+    nameEn: 'Yirgacheffe Bloom',
+    nameZh: '花境晨露',
+    series: 'Morning',
+    type: 'Single Origin',
+    typeZh: '單一產區',
+    accentColor: '#D4715A',
+    accentName: 'Soft Coral',
+    origin: 'Ethiopia Yirgacheffe (Gedeo Zone)',
+    originZh: '衣索比亞 耶加雪菲',
+    roast: 'Light Roast',
+    roastZh: '淺焙',
+    weight: '340g',
+    flavorTags: ['Floral', 'Citrus', 'Elegant'],
+    flavorProfile: 'Bright citrus acidity layered with floral complexity, notes of grapefruit, berry, and delicate cardamom.',
+    flavorProfileZh: '乾淨明亮，展現柑橘酸質與花果香氣，帶有葡萄柚、莓果與小荳蔻層次。',
+    aroma: 'Floral, citrus zest, and light spice.',
+    body: 'Light to medium body with bright, lively acidity.',
+    finish: 'Clean, refined, tea-like with a lingering finish.',
+    tagline: 'Where Brightness Begins.',
+    taglineZh: '風味的起點，源自純淨之境',
+    storyTitle: 'For when you want to taste somewhere else.',
+    story: `Yirgacheffe Bloom comes from the highlands of Ethiopia's Gedeo Zone — a place where coffee has been grown for so long that it grows almost wild between other crops, and where the local word for breakfast is also the word for coffee.
+
+This cup tastes like nowhere else. There's grapefruit in it, and jasmine, and a faint thread of cardamom. The acidity is bright but never sharp. Many people drinking it for the first time say "this barely tastes like coffee." We take that as a compliment.
+
+If you've only ever drunk dark roasted blends, this will open a door.`,
+    bestEnjoyed: 'In the quiet of an early Saturday morning, with nothing on the calendar.',
+  },
+  {
+    slug: 'daily-ritual',
+    nameEn: 'Daily Ritual',
+    nameZh: '每日儀式',
+    series: 'Daily',
+    type: 'Single Origin',
+    typeZh: '單一產區',
+    accentColor: '#8C7A66',
+    accentName: 'Taupe',
+    origin: 'Colombia',
+    originZh: '哥倫比亞',
+    roast: 'Medium Roast',
+    roastZh: '中焙',
+    weight: '340g',
+    flavorTags: ['Smooth', 'Balanced', 'Refined'],
+    flavorProfile: 'Balanced and comforting with milk chocolate, caramelized sugar, and soft red fruit undertones.',
+    flavorProfileZh: '平衡溫潤，帶牛奶巧克力、烘糖與柔和紅果調性。',
+    aroma: 'Sweet cocoa, light caramel, and gentle floral notes.',
+    body: 'Silky medium body with soft acidity.',
+    finish: 'Clean, smooth, and elegantly refined.',
+    tagline: 'Comfort in Every Cup.',
+    taglineZh: '日常的溫柔陪伴',
+    storyTitle: 'For the cup you don\'t have to think about.',
+    story: `Daily Ritual is the coffee for the cup you make automatically. The one that goes into the same mug, with the same amount of water, at roughly the same time of day. The one that becomes part of how you remember a chapter of your life.
+
+Single-origin Colombian beans, medium roasted to bring out a clean balance of milk chocolate and soft red fruit. Silky body. Soft acidity. Nothing demanding. Nothing flashy.
+
+This is the bag we recommend keeping in the cupboard for any morning, any week, any year. The everyday cup, done with care.`,
+    bestEnjoyed: 'Every day, in your favorite mug, exactly the way you like it.',
+  },
+  {
+    slug: 'happy-hour',
+    nameEn: 'Happy Hour',
+    nameZh: '微醺時刻',
+    series: 'Daily',
+    type: 'Single Origin',
+    typeZh: '單一產區',
+    accentColor: '#8B3A3A',
+    accentName: 'Deep Burgundy',
+    origin: 'Guatemala',
+    originZh: '瓜地馬拉',
+    roast: 'Medium Roast',
+    roastZh: '中焙',
+    weight: '340g',
+    flavorTags: ['Cocoa', 'Cedar', 'Dried Fruit'],
+    flavorProfile: 'Dark chocolate and cedar wood layered with brown sugar, almond, raisin, and subtle spice.',
+    flavorProfileZh: '黑巧克力與雪松木質為主調，融合黑糖、杏仁、葡萄乾與細膩辛香。',
+    aroma: 'Roasted cacao, warm wood, dried fruit, and toasted nuts.',
+    body: 'Medium-full body with gentle acidity.',
+    finish: 'Rich, round, and lingering with a spiced cocoa finish.',
+    tagline: 'Indulge the Moment.',
+    taglineZh: '沉浸當下',
+    storyTitle: 'For the afternoon cup, when the day softens.',
+    story: `Happy Hour is the cup we built for 4 PM. The hour when the morning has been long enough, the evening hasn't started, and there's a small window of permission to sit down with something rich.
+
+Guatemalan single origin, medium roasted into something that tastes almost like a small dessert. Dark chocolate, cedar, brown sugar, raisin. The kind of cup that pairs with a square of dark chocolate or a long phone call you've been meaning to make.
+
+Quiet luxury, in a mug.`,
+    bestEnjoyed: 'At 4 PM, alongside a square of dark chocolate and a long exhale.',
+  },
+  {
+    slug: 'midnight',
+    nameEn: 'Midnight',
+    nameZh: '夜語特調',
+    series: 'Evening',
+    type: 'Exclusive Blend',
+    typeZh: '精品拼配',
+    accentColor: '#1F2A40',
+    accentName: 'Deep Navy',
+    origin: 'Guatemala, Sumatra & Colombia',
+    originZh: '瓜地馬拉 / 蘇門答臘 / 哥倫比亞',
+    roast: 'Dark + Medium Roast Blend',
+    roastZh: '深焙＋中焙拼配',
+    weight: '340g',
+    flavorTags: ['Smoky', 'Deep', 'Berry'],
+    flavorProfile: 'Bold and layered with smoky spice, dark chocolate, ripe cherry, and black currant complexity.',
+    flavorProfileZh: '濃烈厚實，煙燻香料、黑巧克力、熟櫻桃與黑醋栗交織層次。',
+    aroma: 'Smoked cocoa, warm spice, dark berries, and roasted richness.',
+    body: 'Medium-full body with moderate acidity.',
+    finish: 'Deep, intense, and luxuriously lingering.',
+    tagline: 'Bold Depth After Dark.',
+    taglineZh: '夜幕降臨，風味更深',
+    storyTitle: 'For the slow hours after dinner.',
+    story: `Midnight was built for the cup that lives outside of daylight. After dinner, after the dishes are done, after the last text has been answered — when what you want is depth, weight, something that occupies the space of a whole hour.
+
+Three origins, layered together: Guatemala for body, Sumatra for earthy depth, Colombia for clean structure. The result is smoky, faintly spiced, with the unexpected lift of dark berry. A cup with weather in it.
+
+Best enjoyed without milk, without sugar, without scrolling.`,
+    bestEnjoyed: 'After dinner, with no screens nearby, in the slow hours before sleep.',
+  },
+  {
+    slug: 'mandheling-noir',
+    nameEn: 'Mandheling Noir',
+    nameZh: '深境黑域',
+    series: 'Evening',
+    type: 'Single Origin',
+    typeZh: '單一產區',
+    accentColor: '#2A2520',
+    accentName: 'Charcoal',
+    origin: 'Indonesia Sumatra (Fair Trade Organic)',
+    originZh: '印尼 蘇門答臘',
+    roast: 'Dark Roast',
+    roastZh: '深焙',
+    weight: '340g',
+    flavorTags: ['Earthy', 'Intense', 'Full'],
+    flavorProfile: 'Rich and full-bodied with dark chocolate and spice, layered with earthy, woody tones, hints of smoke, tobacco, and winey black cherry.',
+    flavorProfileZh: '濃郁厚實，帶有黑巧克力與辛香料風味，融合泥土氣息、木質調與煙燻菸草感。',
+    aroma: 'Dark cocoa, forest wood, spice, and subtle smokiness.',
+    body: 'Full body with low acidity.',
+    finish: 'Heavy, rich, and long-lasting with deep complexity.',
+    tagline: 'Depth Beyond Darkness.',
+    taglineZh: '深焙之下，層次更深',
+    storyTitle: 'For the cup that asks nothing of you.',
+    story: `Mandheling Noir is the darkest cup we make, and the one we make most carefully. Sumatra Mandheling beans are notorious — they are stubborn, complex, and absolutely refuse to taste like anything else in the world. We love them for it.
+
+Wet-hulled in Indonesia in a process unique to the region, these beans carry the weight of their soil — earthy, woody, faintly smoky, with a winey black cherry finish that catches you off guard. Dark roasted to bring out the full body, but never burnt.
+
+This is a cup for the people who already know what they like, and who like things deep.`,
+    bestEnjoyed: 'Late evening, in a heavy ceramic cup, with rain on the window.',
+  },
+];
+
+export const coffeeSeries = ['All', 'Morning', 'Daily', 'Evening'];
+
+export function getCoffeeBySlug(slug) {
+  return coffees.find((coffee) => coffee.slug === slug);
+}

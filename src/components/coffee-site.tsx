@@ -5,7 +5,7 @@ import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
-import heroEditorialSmooth from "@/assets/hero-editorial-smooth.mp4.asset.json";
+import heroEditorialCoffeeKettle from "@/assets/hero-editorial-coffee-kettle.mp4.asset.json";
 import heroPourOver from "@/assets/hero-pour-over.jpg";
 import morningStrip from "@/assets/morning-strip.jpg";
 import philosophyBeans from "@/assets/philosophy-beans.jpg";
@@ -17,7 +17,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronRight, Minus } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 
-const heroVideo = heroEditorialSmooth.url;
+const heroVideo = heroEditorialCoffeeKettle.url;
 
 type Coffee = (typeof coffees)[number];
 type Faq = (typeof faqs)[number];

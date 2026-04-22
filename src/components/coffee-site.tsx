@@ -5,6 +5,7 @@ import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
+import heroEditorialSmooth from "@/assets/hero-editorial-smooth.mp4.asset.json";
 import heroPourOver from "@/assets/hero-pour-over.jpg";
 import morningStrip from "@/assets/morning-strip.jpg";
 import philosophyBeans from "@/assets/philosophy-beans.jpg";
@@ -16,7 +17,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronRight, Minus } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 
-const heroVideo = "/hero-editorial.mp4";
+const heroVideo = heroEditorialSmooth.url;
 
 type Coffee = (typeof coffees)[number];
 type Faq = (typeof faqs)[number];
@@ -100,11 +101,12 @@ export function HomePage() {
 
       <section className="relative flex min-h-screen items-end overflow-hidden bg-background">
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full scale-[1.015] object-cover object-center"
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           poster={heroPourOver}
           aria-hidden="true"
         >
@@ -543,6 +545,25 @@ export function AboutPage() {
           <p>
             Paintings by the founder&apos;s father are a constant source of tone and proportion: muted colors, measured space, and an understanding that feeling often arrives through texture before language.
           </p>
+          <p>
+            His work can be viewed at{" "}
+            <a
+              href="https://johnlinart.ca/Art"
+              target="_blank"
+              rel="noreferrer"
+              className="editorial-link text-ink-primary"
+            >
+              johnlinart.ca/Art
+            </a>
+            , and it remains one of the clearest references for the emotional world behind la petite.elli.
+          </p>
+          <p>
+            We also operate{" "}
+            <a href="https://bluluma.com/" target="_blank" rel="noreferrer" className="editorial-link text-ink-primary">
+              Bluluma
+            </a>
+            , our visual design studio, where we bring the same editorial restraint and brand sensitivity to creative direction, websites, and identity systems.
+          </p>
         </EditorialReveal>
       </section>
 
@@ -557,6 +578,21 @@ export function AboutPage() {
             </EditorialReveal>
           ))}
         </div>
+
+        <EditorialReveal className="container-editorial mt-12 max-w-[760px] space-y-4 border-t border-border pt-8">
+          <SectionLabel>Art & Studio</SectionLabel>
+          <p className="text-base leading-[1.9] text-ink-body md:text-[17px]">
+            The art heritage behind the brand continues through Elli&apos;s father&apos;s paintings, which you can explore at{" "}
+            <a href="https://johnlinart.ca/Art" target="_blank" rel="noreferrer" className="editorial-link text-ink-primary">
+              johnlinart.ca/Art
+            </a>
+            . Alongside the brand, we also run{" "}
+            <a href="https://bluluma.com/" target="_blank" rel="noreferrer" className="editorial-link text-ink-primary">
+              Bluluma
+            </a>
+            , a professional visual design studio focused on thoughtful digital and brand work.
+          </p>
+        </EditorialReveal>
       </section>
     </>
   );

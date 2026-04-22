@@ -9,38 +9,127 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WellnessRouteImport } from './routes/wellness'
+import { Route as OrderRouteImport } from './routes/order'
+import { Route as CollectionRouteImport } from './routes/collection'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CollectionRouteImport } from './routes/collection.'
 
+const WellnessRoute = WellnessRouteImport.update({
+  id: '/wellness',
+  path: '/wellness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderRoute = OrderRouteImport.update({
+  id: '/order',
+  path: '/order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionRoute = CollectionRouteImport.update({
+  id: '/collection',
+  path: '/collection',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CollectionRoute = CollectionRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CollectionRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/collection': typeof CollectionRouteWithChildren
+  '/order': typeof OrderRoute
+  '/wellness': typeof WellnessRoute
+  '/collection/': typeof CollectionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/order': typeof OrderRoute
+  '/wellness': typeof WellnessRoute
+  '/collection': typeof CollectionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/collection': typeof CollectionRouteWithChildren
+  '/order': typeof OrderRoute
+  '/wellness': typeof WellnessRoute
+  '/collection/': typeof CollectionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/collection'
+    | '/order'
+    | '/wellness'
+    | '/collection/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/order' | '/wellness' | '/collection'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/collection'
+    | '/order'
+    | '/wellness'
+    | '/collection/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CollectionRoute: typeof CollectionRouteWithChildren
+  OrderRoute: typeof OrderRoute
+  WellnessRoute: typeof WellnessRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wellness': {
+      id: '/wellness'
+      path: '/wellness'
+      fullPath: '/wellness'
+      preLoaderRoute: typeof WellnessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order': {
+      id: '/order'
+      path: '/order'
+      fullPath: '/order'
+      preLoaderRoute: typeof OrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collection': {
+      id: '/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof CollectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,12 +137,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/collection/': {
+      id: '/collection/'
+      path: '/'
+      fullPath: '/collection/'
+      preLoaderRoute: typeof CollectionRouteImport
+      parentRoute: typeof CollectionRoute
+    }
   }
 }
 
+interface CollectionRouteChildren {
+  CollectionRoute: typeof CollectionRoute
+}
+
+const CollectionRouteChildren: CollectionRouteChildren = {
+  CollectionRoute: CollectionRoute,
+}
+
+const CollectionRouteWithChildren = CollectionRoute._addFileChildren(
+  CollectionRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CollectionRoute: CollectionRouteWithChildren,
+  OrderRoute: OrderRoute,
+  WellnessRoute: WellnessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

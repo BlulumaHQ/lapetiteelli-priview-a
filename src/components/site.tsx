@@ -207,7 +207,7 @@ function SiteHeader() {
               className="hidden items-center gap-2 border border-border bg-background/70 px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-ink-primary lg:inline-flex"
             >
               <ShoppingBag className="h-4 w-4" />
-              Cart <span className="text-ink-muted">(0)</span>
+              Selection
             </Link>
             <a
               href={siteMeta.lineUrl}

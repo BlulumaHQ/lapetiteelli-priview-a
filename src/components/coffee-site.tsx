@@ -499,22 +499,30 @@ export function WellnessPage() {
   return <HomePage />;
 }
 
-function ProductCard({ coffee }: { coffee: Coffee }) {
+function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) {
   return (
-    <Link to="/collection/$slug" params={{ slug: coffee.slug }} className="group block">
-      <div className="space-y-5">
-        <div className="h-px w-full" style={{ backgroundColor: coffee.accentColor }} />
-        <div className="overflow-hidden bg-surface p-6 shadow-soft transition-transform duration-700 group-hover:-translate-y-1">
-          <CoffeePackage coffee={coffee} />
+    <div className="space-y-4">
+      <Link to="/collection/$slug" params={{ slug: coffee.slug }} className="group block">
+        <div className="overflow-hidden bg-surface shadow-soft transition-transform duration-700 group-hover:-translate-y-1">
+          <img
+            src={getCoffeeImage(index)}
+            alt={coffee.nameEn}
+            className="aspect-[4/5] w-full object-cover"
+            loading="lazy"
+          />
         </div>
-        <div className="space-y-2">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-ink-muted">{coffee.series} · {coffee.type}</p>
-          <h3 className="font-serif text-3xl font-light text-ink-primary">{coffee.nameEn}</h3>
-          <p className="font-serif text-xl italic text-ink-body">{coffee.nameZh}</p>
-          <p className="text-sm leading-7 text-ink-muted">{coffee.flavorTags.join(" · ")}</p>
-        </div>
+      </Link>
+      <div className="space-y-2">
+        <h3 className="line-clamp-2 min-h-[3.75rem] font-serif text-2xl font-light leading-tight text-ink-primary md:text-3xl">
+          {coffee.nameEn}
+        </h3>
+        <p className="truncate text-sm text-ink-body">{getCoffeeSummary(coffee)}</p>
+        <p className="text-sm uppercase tracking-[0.14em] text-ink-primary">{getCoffeePrice(coffee.slug)}</p>
       </div>
-    </Link>
+      <Button variant="editorialGhost" size="editorial" className="w-full" type="button">
+        Select
+      </Button>
+    </div>
   );
 }
 

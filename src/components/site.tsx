@@ -283,42 +283,78 @@ function FooterLink({ to, children }: { to: string; children: React.ReactNode })
 }
 
 function SiteFooter() {
+  const socialLinks = [
+    { label: "Instagram", href: siteMeta.instagramUrl, icon: Instagram },
+    { label: "Facebook", href: siteMeta.facebookUrl, icon: Facebook },
+    { label: "TikTok", href: siteMeta.tiktokUrl, icon: Music2 },
+    { label: "Xiaohongshu", href: siteMeta.xiaohongshuUrl, icon: ScanLine },
+    { label: "LINE", href: siteMeta.lineUrl, icon: MessageCircle },
+  ] as const;
+
   return (
     <footer className="bg-surface-strong text-ink-body">
       <div className="container-editorial py-16 md:py-20">
-        <div className="grid gap-10 border-t border-border pt-10 md:grid-cols-[1fr_auto] md:items-start md:justify-between">
-          <div className="space-y-4">
-            <Logo size="sm" />
+        <div className="grid gap-10 border-t border-border pt-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.72fr)_220px] lg:items-start">
+          <div className="space-y-5">
+            <Logo size="sm" className="w-[180px] md:w-[220px]" />
             <p className="max-w-[420px] text-sm leading-7 text-ink-body">
               A quiet coffee ritual, shaped by art and design.
             </p>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted">
+              <FooterLink to="/">Home</FooterLink>
+              <FooterLink to="/collection">Flavors</FooterLink>
+              <FooterLink to="/about">About</FooterLink>
+              <FooterLink to="/journal">Journal</FooterLink>
+            </div>
           </div>
 
-          <div className="space-y-3 text-left md:text-right">
-            <p className="eyebrow-label text-ink-primary">Email</p>
-            <FooterLink to="mailto:hello@lapetiteelli.com">hello@lapetiteelli.com</FooterLink>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="space-y-3">
+              <p className="eyebrow-label text-ink-primary">Contact</p>
+              <FooterLink to="mailto:hello@lapetiteelli.com">hello@lapetiteelli.com</FooterLink>
+            </div>
+            <div className="space-y-3">
+              <p className="eyebrow-label text-ink-primary">Social</p>
+              <div className="space-y-2">
+                {socialLinks.map(({ label, href }) => (
+                  <div key={label} className="text-sm text-ink-body">
+                    <FooterLink to={href}>{label}</FooterLink>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="justify-self-start lg:justify-self-end">
+            <div className="space-y-3 border border-border bg-background/55 p-4">
+              <p className="eyebrow-label text-ink-primary">LINE</p>
+              <div className="grid grid-cols-7 gap-1 bg-surface p-2">
+                {Array.from({ length: 49 }).map((_, index) => {
+                  const filled = [0, 1, 2, 5, 6, 7, 8, 12, 14, 16, 18, 19, 20, 22, 24, 26, 28, 30, 32, 33, 34, 36, 40, 41, 42, 46, 47, 48].includes(index);
+                  return (
+                    <span
+                      key={index}
+                      className={cn(
+                        "block h-4 w-4",
+                        filled ? "bg-ink-primary" : "bg-cream-base",
+                      )}
+                    />
+                  );
+                })}
+              </div>
+              <p className="text-xs leading-5 text-ink-muted">Scan for a quiet update on releases and rituals.</p>
+            </div>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 text-sm text-ink-muted md:flex-row md:items-center md:justify-between">
-          <div className="md:flex-1" />
           <p className="text-center">© 2026 la petite.elli. All rights reserved.</p>
-          <div className="flex items-center justify-center gap-4 md:flex-1 md:justify-end">
-            <a href={siteMeta.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:text-ink-primary">
-              <Instagram className="h-4 w-4" />
-            </a>
-            <a href={siteMeta.facebookUrl} target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-ink-primary">
-              <Facebook className="h-4 w-4" />
-            </a>
-            <a href={siteMeta.tiktokUrl} target="_blank" rel="noreferrer" aria-label="TikTok" className="hover:text-ink-primary">
-              <Music2 className="h-4 w-4" />
-            </a>
-            <a href={siteMeta.xiaohongshuUrl} target="_blank" rel="noreferrer" aria-label="Xiaohongshu" className="hover:text-ink-primary">
-              <ScanLine className="h-4 w-4" />
-            </a>
-            <a href={siteMeta.lineUrl} target="_blank" rel="noreferrer" aria-label="LINE" className="hover:text-ink-primary">
-              <MessageCircle className="h-4 w-4" />
-            </a>
+          <div className="flex items-center justify-center gap-4 md:justify-end">
+            {socialLinks.map(({ label, href, icon: Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="hover:text-ink-primary">
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
           </div>
         </div>
       </div>

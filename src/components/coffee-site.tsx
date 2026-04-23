@@ -110,7 +110,7 @@ export function HomePage() {
         description="A quiet ritual of coffee, art, and everyday living. Explore eight small-batch coffee flavors crafted for everyday rituals."
       />
 
-      <section className="relative flex min-h-screen items-end overflow-hidden bg-background">
+      <section className="relative flex min-h-screen items-center overflow-hidden bg-background">
         <img
           src={aboutGalleryOne}
           alt="La petite.elli editorial hero artwork"
@@ -118,8 +118,8 @@ export function HomePage() {
         />
         <div className="cinematic-overlay absolute inset-0" />
 
-        <div className="container-editorial relative z-10 w-full pb-16 pt-32 md:pb-24 md:pt-40">
-          <HeroReveal className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.55fr)] lg:items-end">
+        <div className="container-editorial relative z-10 w-full pb-20 pt-24 md:pb-24 md:pt-28">
+          <HeroReveal className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.55fr)] lg:items-start">
             <div className="max-w-[760px] space-y-6 text-primary-foreground">
               <h1 className="font-serif text-6xl font-light leading-[0.95] tracking-[0.01em] md:text-[7rem] lg:text-[8rem]">
                 la petite.elli
@@ -507,17 +507,17 @@ export function WellnessPage() {
 
 function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <Link to="/collection/$slug" params={{ slug: coffee.slug }} className="group block">
-        <div className="overflow-hidden shadow-soft transition-transform duration-700 group-hover:-translate-y-1">
+        <div className="bg-surface p-4 shadow-soft transition-transform duration-700 group-hover:-translate-y-1 md:p-5">
           <CoffeePackage coffee={coffee} labelImage={coffeeLabelImages[coffee.slug] ?? getCoffeeImage(index)} />
         </div>
       </Link>
-      <div className="space-y-2">
-        <h3 className="line-clamp-2 min-h-[3.75rem] font-serif text-2xl font-light leading-tight text-ink-primary md:text-3xl">
+      <div className="space-y-2.5">
+        <h3 className="min-h-[3.75rem] font-serif text-2xl font-light leading-tight text-ink-primary md:text-3xl">
           {coffee.nameEn}
         </h3>
-        <p className="truncate text-sm text-ink-body">{getCoffeeSummary(coffee)}</p>
+        <p className="text-sm leading-6 text-ink-body">{getCoffeeSummary(coffee)}</p>
         <p className="text-sm uppercase tracking-[0.14em] text-ink-primary">{getCoffeePrice(coffee.slug)}</p>
       </div>
       <Button variant="editorialGhost" size="editorial" className="w-full" type="button">
@@ -533,11 +533,11 @@ function CoffeePackage({ coffee, large, labelImage }: { coffee: Coffee; large?: 
     <div className={cn("mx-auto w-full max-w-[280px]", large && "max-w-[360px]")}>
       <div className="rounded-[8px] border border-package-border bg-package-bag px-3 pb-4 pt-3 shadow-[0_22px_48px_-28px_color-mix(in_oklab,var(--color-ink-primary)_34%,transparent)] md:px-4 md:pb-5 md:pt-4">
         <div className="mx-auto mb-3 h-3.5 w-[24%] rounded-b-[10px] border-x border-b border-package-border bg-package-shell/70" />
-        <div className="rounded-[4px] bg-package-shell p-2 md:p-3">
+        <div className="rounded-[4px] border border-package-border bg-package-shell p-3 md:p-4">
           <img
             src={labelImage ?? getCoffeeImage(0)}
             alt={`${coffee.nameEn} coffee bag label`}
-            className="aspect-[3/4.9] w-full rounded-[2px] object-cover"
+            className="aspect-[3/4.9] w-full rounded-[2px] object-contain"
             loading="lazy"
           />
         </div>

@@ -183,14 +183,7 @@ function SiteHeader() {
             ))}
           </div>
 
-          <button
-            type="button"
-            onClick={() => setMobileOpen(true)}
-            className="inline-flex h-10 w-10 items-center justify-center border border-border bg-background/70 text-ink-primary lg:hidden"
-            aria-label="Open menu"
-          >
-            <Menu className="h-5 w-5" />
-          </button>
+          <div className="h-10 w-10 lg:hidden" aria-hidden="true" />
 
           <Link to="/" className="justify-self-center text-center">
             <Logo size="md" className="w-[220px] md:w-[280px]" />

@@ -100,6 +100,21 @@ function getCoffeeSummary(coffee: Coffee) {
   return coffee.flavorTags.slice(0, 2).join(" · ");
 }
 
+function getCoffeeIntro(coffee: Coffee) {
+  const intros: Record<string, string> = {
+    breakfast: "Bright and lively with cocoa, fruit, and toasted nut complexity.",
+    sunrise: "Rich chocolate with malt sweetness, cinnamon spice, and orange peel.",
+    "golden-hour": "Smooth chocolate, nutty warmth, and gentle sweetness.",
+    "yirgacheffe-bloom": "Bright citrus acidity with floral complexity and notes of berry.",
+    "daily-ritual": "Milk chocolate, caramel, and soft fruit notes.",
+    "happy-hour": "Dark chocolate, cedar wood, brown sugar, and dried fruit.",
+    midnight: "Smoky spice, dark chocolate, and dark berry complexity.",
+    "mandheling-noir": "Dark chocolate, earthy wood, smoke, and winey black cherry.",
+  };
+
+  return intros[coffee.slug] ?? coffee.flavorProfile;
+}
+
 export function HomePage() {
   const featuredProducts = coffees.slice(0, 8);
 
@@ -156,7 +171,7 @@ export function HomePage() {
             </div>
           </EditorialReveal>
 
-          <div className="grid gap-x-6 gap-y-10 grid-cols-2 xl:grid-cols-4">
+          <div className="-mx-3 grid grid-cols-2 gap-x-3 gap-y-8 sm:mx-0 sm:gap-x-6 sm:gap-y-10 xl:grid-cols-4">
             {featuredProducts.map((coffee, index) => (
               <EditorialReveal key={coffee.slug} delay={index * 0.05}>
                 <ProductCard coffee={coffee} />
@@ -274,7 +289,7 @@ export function CollectionPage() {
             </p>
           </EditorialReveal>
 
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 xl:grid-cols-4">
+          <div className="-mx-3 grid grid-cols-2 gap-x-3 gap-y-8 sm:mx-0 sm:gap-x-6 sm:gap-y-10 xl:grid-cols-4">
             {coffees.map((coffee, index) => (
               <EditorialReveal key={coffee.slug} delay={index * 0.03}>
                 <ProductCard coffee={coffee} index={index} />
@@ -507,17 +522,18 @@ export function WellnessPage() {
 
 function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) {
   return (
-    <div className="space-y-5">
+    <div className="space-y-4 sm:space-y-5">
       <Link to="/collection/$slug" params={{ slug: coffee.slug }} className="group block">
-        <div className="bg-surface p-4 shadow-soft transition-transform duration-700 group-hover:-translate-y-1 md:p-5">
-          <CoffeePackage coffee={coffee} labelImage={coffeeLabelImages[coffee.slug] ?? getCoffeeImage(index)} />
+        <div className="bg-surface p-2.5 shadow-soft transition-transform duration-700 group-hover:-translate-y-1 sm:p-4 md:p-5">
+          <CoffeePackage coffee={coffee} compact labelImage={coffeeLabelImages[coffee.slug] ?? getCoffeeImage(index)} />
         </div>
       </Link>
-      <div className="space-y-2.5">
-        <h3 className="min-h-[3.75rem] font-serif text-2xl font-light leading-tight text-ink-primary md:text-3xl">
+      <div className="space-y-2.5 px-0.5">
+        <h3 className="min-h-[3.2rem] font-serif text-[1.9rem] font-light leading-[0.98] text-ink-primary md:min-h-[3.75rem] md:text-3xl">
           {coffee.nameEn}
         </h3>
-        <p className="text-sm leading-6 text-ink-body">{getCoffeeSummary(coffee)}</p>
+        <p className="text-[12px] leading-5 text-ink-muted sm:text-sm sm:leading-6">{getCoffeeSummary(coffee)}</p>
+        <p className="text-[13px] leading-5 text-ink-body sm:text-sm sm:leading-6">{getCoffeeIntro(coffee)}</p>
         <p className="text-sm uppercase tracking-[0.14em] text-ink-primary">{getCoffeePrice(coffee.slug)}</p>
       </div>
       <Button variant="editorialGhost" size="editorial" className="w-full" type="button">
@@ -527,13 +543,13 @@ function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) 
   );
 }
 
-function CoffeePackage({ coffee, large, labelImage }: { coffee: Coffee; large?: boolean; labelImage?: string }) {
+function CoffeePackage({ coffee, large, compact, labelImage }: { coffee: Coffee; large?: boolean; compact?: boolean; labelImage?: string }) {
   const prefersReducedMotion = useReducedMotion();
   const content = (
-    <div className={cn("mx-auto w-full max-w-[280px]", large && "max-w-[360px]")}>
-      <div className="rounded-[8px] border border-package-border bg-package-bag px-3 pb-4 pt-3 shadow-[0_22px_48px_-28px_color-mix(in_oklab,var(--color-ink-primary)_34%,transparent)] md:px-4 md:pb-5 md:pt-4">
-        <div className="mx-auto mb-3 h-3.5 w-[24%] rounded-b-[10px] border-x border-b border-package-border bg-package-shell/70" />
-        <div className="rounded-[4px] border border-package-border bg-package-shell p-3 md:p-4">
+    <div className={cn("mx-auto w-full", compact ? "max-w-none" : "max-w-[280px]", large && "max-w-[360px]")}>
+      <div className={cn("rounded-[8px] border border-package-border bg-package-bag shadow-[0_22px_48px_-28px_color-mix(in_oklab,var(--color-ink-primary)_34%,transparent)]", compact ? "px-2 pb-3 pt-2 sm:px-3 sm:pb-4 sm:pt-3" : "px-3 pb-4 pt-3 md:px-4 md:pb-5 md:pt-4")}>
+        <div className={cn("mx-auto rounded-b-[10px] border-x border-b border-package-border bg-package-shell/70", compact ? "mb-2.5 h-3 w-[22%]" : "mb-3 h-3.5 w-[24%]")} />
+        <div className={cn("rounded-[4px] border border-package-border bg-package-shell", compact ? "p-2" : "p-3 md:p-4")}>
           <img
             src={labelImage ?? getCoffeeImage(0)}
             alt={`${coffee.nameEn} coffee bag label`}

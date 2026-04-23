@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Facebook, Instagram, Menu, MessageCircle, Music2, ScanLine, X } from "lucide-react";
 import * as React from "react";
 
-import logoImage from "@/assets/logo-la-petite-elli.png";
+import logoImage from "@/assets/logo-la-petite-elli-boutique.png";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -193,9 +193,7 @@ function SiteHeader() {
           </button>
 
           <Link to="/" className="justify-self-center text-center">
-            <span className="font-serif text-[1.7rem] font-light tracking-[0.02em] text-ink-primary">
-              la petite.elli
-            </span>
+            <Logo size="md" className="w-[220px] md:w-[280px]" />
           </Link>
 
           <div className="flex items-center justify-end gap-2 lg:gap-3">
@@ -236,7 +234,7 @@ function SiteHeader() {
                 >
                   <X className="h-5 w-5" />
                 </button>
-                <span className="font-serif text-[1.45rem] font-light text-ink-primary">la petite.elli</span>
+                <Logo size="sm" className="w-[180px]" />
                 <div className="h-10 w-10" aria-hidden="true" />
               </div>
 

@@ -81,6 +81,7 @@
   --color-overlay: var(--overlay);
   --color-warm-highlight: var(--warm-highlight);
   --color-package-shell: var(--package-shell);
+  --color-package-bag: var(--package-bag);
   --color-package-border: var(--package-border);
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -115,6 +116,7 @@
   --overlay: oklch(0.251 0.021 47.84);
   --warm-highlight: oklch(0.734 0.036 72.65);
   --package-shell: oklch(0.908 0.02 74.84);
+  --package-bag: oklch(0.534 0.042 58.77);
   --package-border: oklch(0.837 0.021 72.84);
   --background: var(--cream-soft);
   --foreground: var(--ink-primary);

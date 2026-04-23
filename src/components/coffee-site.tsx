@@ -4,8 +4,13 @@ import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
-import heroPourOver from "@/assets/hero-pour-over.jpg";
-import heroPourLoop from "@/assets/hero-pour-loop.mp4.asset.json";
+import labelBreakfast from "@/assets/label-breakfast.jpg";
+import labelDailyRitualAlt from "@/assets/label-daily-ritual-alt.jpg";
+import labelDailyRitual from "@/assets/label-daily-ritual.jpg";
+import labelGoldenHour from "@/assets/label-golden-hour.jpg";
+import labelHappyHour from "@/assets/label-happy-hour.jpg";
+import labelMidnight from "@/assets/label-midnight.jpg";
+import labelSunrise from "@/assets/label-sunrise.jpg";
 import morningStrip from "@/assets/morning-strip.jpg";
 import philosophyBeans from "@/assets/philosophy-beans.jpg";
 import { coffees, getCoffeeBySlug } from "@/data/coffees";
@@ -14,8 +19,6 @@ import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
-
-const heroVideo = heroPourLoop.url;
 
 type Coffee = (typeof coffees)[number];
 
@@ -39,6 +42,17 @@ const coffeePrices: Record<string, string> = {
   "happy-hour": "$25",
   midnight: "$26",
   "mandheling-noir": "$27",
+};
+
+const coffeeLabelImages: Record<string, string> = {
+  breakfast: labelBreakfast,
+  sunrise: labelSunrise,
+  "golden-hour": labelGoldenHour,
+  "yirgacheffe-bloom": labelSunrise,
+  "daily-ritual": labelDailyRitual,
+  "happy-hour": labelHappyHour,
+  midnight: labelMidnight,
+  "mandheling-noir": labelDailyRitualAlt,
 };
 
 const journalEntries = [
@@ -97,20 +111,12 @@ export function HomePage() {
       />
 
       <section className="relative flex min-h-screen items-end overflow-hidden bg-background">
-        <video
-          className="absolute inset-0 h-full w-full scale-[1.015] object-cover object-center"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster={heroPourOver}
-          aria-hidden="true"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        <img
+          src={aboutGalleryOne}
+          alt="La petite.elli editorial hero artwork"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
         <div className="cinematic-overlay absolute inset-0" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
 
         <div className="container-editorial relative z-10 w-full pb-16 pt-32 md:pb-24 md:pt-40">
           <HeroReveal className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.55fr)] lg:items-end">
@@ -503,13 +509,8 @@ function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) 
   return (
     <div className="space-y-4">
       <Link to="/collection/$slug" params={{ slug: coffee.slug }} className="group block">
-        <div className="overflow-hidden bg-surface shadow-soft transition-transform duration-700 group-hover:-translate-y-1">
-          <img
-            src={getCoffeeImage(index)}
-            alt={coffee.nameEn}
-            className="aspect-[4/5] w-full object-cover"
-            loading="lazy"
-          />
+        <div className="overflow-hidden shadow-soft transition-transform duration-700 group-hover:-translate-y-1">
+          <CoffeePackage coffee={coffee} labelImage={coffeeLabelImages[coffee.slug] ?? getCoffeeImage(index)} />
         </div>
       </Link>
       <div className="space-y-2">
@@ -526,20 +527,19 @@ function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) 
   );
 }
 
-function CoffeePackage({ coffee, large }: { coffee: Coffee; large?: boolean }) {
+function CoffeePackage({ coffee, large, labelImage }: { coffee: Coffee; large?: boolean; labelImage?: string }) {
   const prefersReducedMotion = useReducedMotion();
   const content = (
     <div className={cn("mx-auto w-full max-w-[280px]", large && "max-w-[360px]")}>
-      <div className="border border-package-border bg-package-shell p-4 md:p-5">
-        <div className="h-4 border-b border-package-border" />
-        <div className="bg-background px-5 py-8 md:px-7 md:py-10">
-          <div className="mx-auto mb-6 h-14 w-14 rounded-full border border-border bg-surface" />
-          <p className="text-center text-[11px] uppercase tracking-[0.22em] text-ink-muted">{coffee.series}</p>
-          <h4 className="mt-3 text-center font-serif text-4xl font-light text-ink-primary">{coffee.nameEn}</h4>
-          <p className="mt-2 text-center font-serif text-lg italic text-ink-body">{coffee.nameZh}</p>
-          <div className="mx-auto my-6 h-px w-16" style={{ backgroundColor: coffee.accentColor }} />
-          <p className="text-center text-[11px] uppercase tracking-[0.18em] text-ink-muted">{coffee.origin}</p>
-          <p className="mt-2 text-center text-[11px] uppercase tracking-[0.18em] text-ink-muted">{coffee.roast}</p>
+      <div className="rounded-[8px] border border-package-border bg-package-bag px-3 pb-4 pt-3 shadow-[0_22px_48px_-28px_color-mix(in_oklab,var(--color-ink-primary)_34%,transparent)] md:px-4 md:pb-5 md:pt-4">
+        <div className="mx-auto mb-3 h-3.5 w-[24%] rounded-b-[10px] border-x border-b border-package-border bg-package-shell/70" />
+        <div className="rounded-[4px] bg-package-shell p-2 md:p-3">
+          <img
+            src={labelImage ?? getCoffeeImage(0)}
+            alt={`${coffee.nameEn} coffee bag label`}
+            className="aspect-[3/4.9] w-full rounded-[2px] object-cover"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

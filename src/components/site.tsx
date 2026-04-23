@@ -1,6 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Instagram, Menu, MessageCircle, ShoppingBag, X } from "lucide-react";
 import * as React from "react";
 
 import logoImage from "@/assets/logo-la-petite-elli.png";
@@ -8,21 +7,18 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const siteMeta = {
-  title: "la petite.elli — Boutique Lifestyle Collections",
-  description:
-    "An editorial boutique world of coffee, objects, art, and everyday rituals shaped with quiet luxury.",
+  title: "la petite.elli — Quiet coffee for slow living",
+  description: "A quiet ritual of coffee, art, and everyday living.",
   lineUrl: "https://line.me/",
   instagramUrl: "https://instagram.com/lapetiteelli",
   facebookUrl: "#",
   tiktokUrl: "#",
   xiaohongshuUrl: "#",
-  fatherArtUrl: "https://johnlinart.ca/Art",
-  blulumaUrl: "https://bluluma.com/",
+  email: "hello@lapetiteelli.com",
 };
 
 const navItems = [
-  { label: "Shop", to: "/shop" as const },
-  { label: "Collection", to: "/collection" as const },
+  { label: "Home", to: "/" as const },
   { label: "About", to: "/about" as const },
   { label: "Journal", to: "/journal" as const },
 ];
@@ -35,6 +31,7 @@ export function SEO({
   description?: string;
 }) {
   const canonical = typeof window !== "undefined" ? window.location.href : undefined;
+
   return (
     <>
       <title>{title}</title>
@@ -60,7 +57,7 @@ export function Logo({ size = "md", className }: { size?: "sm" | "md" | "lg"; cl
   return (
     <img
       src={logoImage}
-      alt="La Petite Elli Boutique wordmark"
+      alt="la petite.elli wordmark"
       className={cn("h-auto object-contain", sizeClasses[size], className)}
       width={640}
       height={640}
@@ -180,11 +177,11 @@ function SiteHeader() {
         )}
       >
         <div className="container-editorial grid h-20 grid-cols-[auto_1fr_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
-          <div className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-8 lg:flex">
             {navItems.map((item) => (
               <NavLink key={item.to} to={item.to} label={item.label} />
             ))}
-          </div>
+          </nav>
 
           <button
             type="button"
@@ -192,41 +189,17 @@ function SiteHeader() {
             className="inline-flex h-10 w-10 items-center justify-center border border-border bg-background/70 text-ink-primary lg:hidden"
             aria-label="Open menu"
           >
-            <Menu className="h-5 w-5" />
+            <MenuIcon />
           </button>
 
           <Link to="/" className="justify-self-center text-center">
-            <span className="font-serif text-[1.7rem] font-light tracking-[0.02em] text-ink-primary">
-              la petite.elli
-            </span>
+            <span className="font-serif text-[1.7rem] font-light tracking-[0.02em] text-ink-primary">la petite.elli</span>
           </Link>
 
-          <div className="flex items-center justify-end gap-2 lg:gap-3">
-            <Link
-              to="/shop"
-              className="hidden items-center gap-2 border border-border bg-background/70 px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-ink-primary lg:inline-flex"
-            >
-              <ShoppingBag className="h-4 w-4" />
-              Selection
-            </Link>
-            <a
-              href={siteMeta.lineUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="hidden items-center gap-2 border border-border bg-background/70 px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-ink-primary md:inline-flex"
-              aria-label="Open LINE"
-            >
-              <MessageCircle className="h-4 w-4" />
-              LINE
-            </a>
-            <button
-              type="button"
-              onClick={() => setMobileOpen(true)}
-              className="inline-flex h-10 w-10 items-center justify-center border border-border bg-background/70 text-ink-primary"
-              aria-label="Open site menu"
-            >
-              <Menu className="h-5 w-5" />
-            </button>
+          <div className="flex items-center justify-end">
+            <Button variant="editorialPrimary" size="editorial" className="hidden lg:inline-flex" asChild>
+              <Link to="/collection">Explore Flavors</Link>
+            </Button>
           </div>
         </div>
       </header>
@@ -248,41 +221,21 @@ function SiteHeader() {
                   className="inline-flex h-10 w-10 items-center justify-center border border-border text-ink-primary"
                   aria-label="Close menu"
                 >
-                  <X className="h-5 w-5" />
+                  <CloseIcon />
                 </button>
                 <span className="font-serif text-[1.45rem] font-light text-ink-primary">la petite.elli</span>
-                <a
-                  href={siteMeta.lineUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center border border-border text-ink-primary"
-                  aria-label="Open LINE"
-                >
-                  <MessageCircle className="h-5 w-5" />
-                </a>
+                <div className="h-10 w-10" aria-hidden="true" />
               </div>
 
               <nav className="mt-16 flex flex-1 flex-col justify-center gap-8">
                 {navItems.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className="font-serif text-5xl font-light text-ink-primary"
-                  >
+                  <Link key={item.to} to={item.to} className="font-serif text-5xl font-light text-ink-primary">
                     {item.label}
                   </Link>
                 ))}
-                <Link to="/order" className="font-serif text-3xl font-light text-ink-body">
-                  Ordering
-                </Link>
-                <a
-                  href={siteMeta.lineUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.16em] text-ink-primary"
-                >
-                  Join LINE <ArrowRight className="h-4 w-4" />
-                </a>
+                <Button variant="editorialPrimary" size="editorial" className="mt-6 w-full sm:w-auto" asChild>
+                  <Link to="/collection">Explore Flavors</Link>
+                </Button>
               </nav>
             </div>
           </motion.div>
@@ -292,7 +245,7 @@ function SiteHeader() {
   );
 }
 
-function NavLink({ to, label }: { to: "/shop" | "/collection" | "/about" | "/journal"; label: string }) {
+function NavLink({ to, label }: { to: "/" | "/about" | "/journal"; label: string }) {
   return (
     <Link
       to={to}
@@ -304,78 +257,42 @@ function NavLink({ to, label }: { to: "/shop" | "/collection" | "/about" | "/jou
   );
 }
 
-function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
-  const external = !to.startsWith("/") && !to.startsWith("mailto:");
-
-  return (
-    <a href={to} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined} className="editorial-link text-sm text-ink-body">
-      {children}
-    </a>
-  );
-}
-
 function SiteFooter() {
   return (
     <footer className="bg-surface-strong text-ink-body">
-      <div className="container-editorial py-20 md:py-24">
-        <div className="grid gap-14 border-t border-border pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
-          <div className="space-y-7">
-            <div className="space-y-3">
-              <p className="editorial-kicker">Newsletter</p>
-              <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-                Notes on coffee, objects, art, and the atmosphere around them.
-              </h2>
-            </div>
-            <p className="max-w-[620px] text-base leading-[1.8] text-ink-body">
-              A quiet letter from Vancouver with new releases, journal entries, studio updates, and early access to future boutique collections.
+      <div className="container-editorial py-16 md:py-20">
+        <div className="grid gap-10 border-t border-border pt-10 md:grid-cols-[1fr_auto] md:items-end">
+          <div className="space-y-5">
+            <Logo size="md" />
+            <p className="max-w-[420px] text-sm leading-7 text-ink-body">
+              A quiet coffee ritual, shaped by art and design.
             </p>
-            <NewsletterSignup />
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2">
-            <FooterColumn
-              title="Navigate"
-              links={[
-                { label: "Shop", to: "/shop" },
-                { label: "Collections", to: "/collection" },
-                { label: "About", to: "/about" },
-                { label: "Journal", to: "/journal" },
-              ]}
-            />
-            <FooterColumn
-              title="Connect"
-              links={[
-                { label: "Order via LINE", to: "/order" },
-                { label: "Instagram", to: siteMeta.instagramUrl },
-                { label: "Facebook Page", to: siteMeta.facebookUrl },
-                { label: "TikTok", to: siteMeta.tiktokUrl },
-                { label: "小紅書", to: siteMeta.xiaohongshuUrl },
-                { label: "LINE", to: siteMeta.lineUrl },
-                { label: "Elli's father art", to: siteMeta.fatherArtUrl },
-                { label: "Bluluma", to: siteMeta.blulumaUrl },
-                { label: "hello@lapetiteelli.com", to: "mailto:hello@lapetiteelli.com" },
-              ]}
-            />
-          </div>
+          <a href={`mailto:${siteMeta.email}`} className="justify-self-start text-sm leading-7 text-ink-primary md:justify-self-end">
+            {siteMeta.email}
+          </a>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-border pt-6 text-sm text-ink-muted md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-col gap-2">
-            <p>© 2026 la petite.elli · Vancouver</p>
-            <p>
-              Web Design by{" "}
-              <a href={siteMeta.blulumaUrl} target="_blank" rel="noreferrer" className="editorial-link text-ink-primary">
-                Bluluma
-              </a>
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-5">
-            <a href={siteMeta.instagramUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink-primary">
-              <Instagram className="h-4 w-4" /> Instagram
-            </a>
-            <a href={siteMeta.lineUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink-primary">
-              <MessageCircle className="h-4 w-4" /> LINE
-            </a>
+        <div className="mt-10 grid gap-5 border-t border-border pt-6 md:grid-cols-[1fr_auto_1fr] md:items-center">
+          <div className="hidden md:block" />
+          <p className="text-center text-sm text-ink-muted">© 2026 la petite.elli. All rights reserved.</p>
+          <div className="flex items-center justify-center gap-4 md:justify-self-end">
+            <SocialIconLink href={siteMeta.instagramUrl} label="Instagram">
+              <InstagramIcon />
+            </SocialIconLink>
+            <SocialIconLink href={siteMeta.facebookUrl} label="Facebook Page">
+              <FacebookIcon />
+            </SocialIconLink>
+            <SocialIconLink href={siteMeta.tiktokUrl} label="TikTok">
+              <TikTokIcon />
+            </SocialIconLink>
+            <SocialIconLink href={siteMeta.xiaohongshuUrl} label="Xiaohongshu (RED)">
+              <RedIcon />
+            </SocialIconLink>
+            <SocialIconLink href={siteMeta.lineUrl} label="LINE">
+              <LineIcon />
+            </SocialIconLink>
           </div>
         </div>
       </div>
@@ -383,67 +300,85 @@ function SiteFooter() {
   );
 }
 
-function NewsletterSignup() {
-  const [email, setEmail] = React.useState("");
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const nextEmail = email.trim();
-    const href = `mailto:hello@lapetiteelli.com?subject=${encodeURIComponent("Newsletter Sign Up")}&body=${encodeURIComponent(`Please add this email to the la petite.elli newsletter list:\n\n${nextEmail || "[your email]"}`)}`;
-    window.location.href = href;
-  };
-
+function SocialIconLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
-      <label className="sr-only" htmlFor="newsletter-email">
-        Email address
-      </label>
-      <input
-        id="newsletter-email"
-        type="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        placeholder="Email address"
-        className="h-12 min-w-0 flex-1 border border-border bg-background px-4 text-sm text-ink-primary outline-none placeholder:text-ink-muted focus:border-ink-primary"
-      />
-      <Button variant="editorialPrimary" size="editorial" type="submit">
-        Join Newsletter <ArrowRight className="h-4 w-4" />
-      </Button>
-    </form>
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className="inline-flex h-9 w-9 items-center justify-center text-ink-muted transition-colors duration-300 hover:text-ink-primary"
+    >
+      {children}
+    </a>
   );
 }
 
-function FooterColumn({
-  title,
-  links,
-}: {
-  title: string;
-  links: Array<{ label: string; to: string }>;
-}) {
+function MenuIcon() {
   return (
-    <div className="space-y-5">
-      <p className="eyebrow-label text-ink-primary">{title}</p>
-      <div className="flex flex-col gap-3">
-        {links.map((link) => (
-          <FooterLink key={link.label} to={link.to}>
-            {link.label}
-          </FooterLink>
-        ))}
-      </div>
-    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true">
+      <path d="M4 7h16" />
+      <path d="M4 12h16" />
+      <path d="M4 17h16" />
+    </svg>
   );
 }
 
-export function OrderButton({ children = "Order via LINE", className }: { children?: React.ReactNode; className?: string }) {
+function CloseIcon() {
   return (
-    <Button variant="editorialGhost" size="editorial" className={className} asChild>
-      <a href={siteMeta.lineUrl} target="_blank" rel="noreferrer">
-        {children}
-      </a>
-    </Button>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true">
+      <path d="M6 6l12 12" />
+      <path d="M18 6L6 18" />
+    </svg>
   );
 }
 
-export function LineNote() {
-  return <span>{/* TODO: replace with actual LINE group URL */}</span>;
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-4 w-4" aria-hidden="true">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function FacebookIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
+      <path d="M13.3 20v-7h2.4l.4-2.7h-2.8V8.6c0-.8.3-1.4 1.5-1.4H16V4.8c-.2 0-.9-.1-1.8-.1-1.8 0-3.1 1.1-3.1 3.3v2.3H9v2.7h2.1v7h2.2Z" />
+    </svg>
+  );
+}
+
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
+      <path d="M14.8 4c.3 1.8 1.3 3 3.1 3.4v2.3c-1.3 0-2.3-.4-3.1-1v5.4a4.7 4.7 0 1 1-4.7-4.7c.3 0 .6 0 .9.1V12a2.6 2.6 0 1 0 1.7 2.4V4h2.1Z" />
+    </svg>
+  );
+}
+
+function RedIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4" aria-hidden="true">
+      <rect x="3.5" y="5" width="17" height="14" rx="4" />
+      <path d="M8 10.5h3.4c1.5 0 2.4.8 2.4 2s-.9 2-2.4 2H8v-4Zm0 0 4.8 4" />
+      <path d="M16.8 8.3h.1" />
+      <path d="M18.3 8.3h.1" />
+    </svg>
+  );
+}
+
+function LineIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4" aria-hidden="true">
+      <path d="M12 4.5c-4.7 0-8.5 2.9-8.5 6.5 0 3.2 3 5.8 7 6.4l-.7 2.6 3-2.4h.2c4.7 0 8.5-2.9 8.5-6.6 0-3.6-3.8-6.5-8.5-6.5Z" />
+      <path d="M8.2 13.2V9.4" />
+      <path d="M10.8 13.2h-2.6" />
+      <path d="M12.2 13.2V9.4l2.6 3.8V9.4" />
+      <path d="M17.2 9.4h-2.4v3.8h2.4" />
+      <path d="M17.2 11.3h-2.1" />
+    </svg>
+  );
 }

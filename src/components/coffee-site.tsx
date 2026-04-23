@@ -4,8 +4,6 @@ import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
-import heroPourOver from "@/assets/hero-pour-over.jpg";
-import heroPourLoop from "@/assets/hero-pour-loop.mp4.asset.json";
 import labelBreakfast from "@/assets/label-breakfast.jpg";
 import labelDailyRitualAlt from "@/assets/label-daily-ritual-alt.jpg";
 import labelDailyRitual from "@/assets/label-daily-ritual.jpg";
@@ -21,8 +19,6 @@ import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
-
-const heroVideo = heroPourLoop.url;
 
 type Coffee = (typeof coffees)[number];
 
@@ -115,18 +111,11 @@ export function HomePage() {
       />
 
       <section className="relative flex min-h-screen items-end overflow-hidden bg-background">
-        <video
-          className="absolute inset-0 h-full w-full scale-[1.015] object-cover object-center"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster={heroPourOver}
-          aria-hidden="true"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        <img
+          src={aboutGalleryOne}
+          alt="La petite.elli editorial hero artwork"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
         <div className="cinematic-overlay absolute inset-0" />
 
         <div className="container-editorial relative z-10 w-full pb-16 pt-32 md:pb-24 md:pt-40">

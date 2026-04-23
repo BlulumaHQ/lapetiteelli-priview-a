@@ -97,7 +97,7 @@ export function EditorialReveal({
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay }}
+      transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {children}
     </motion.div>
@@ -120,7 +120,7 @@ export function HeroReveal({ children, className }: { children: React.ReactNode;
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: 0.1,
+            staggerChildren: 0.22,
           },
         },
       }}
@@ -132,7 +132,7 @@ export function HeroReveal({ children, className }: { children: React.ReactNode;
             hidden: { opacity: 0, y: 16 },
             visible: { opacity: 1, y: 0 },
           }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1] }}
         >
           {child}
         </motion.div>
@@ -237,7 +237,7 @@ function SiteHeader() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-50 bg-background"
           >
             <div className="container-editorial flex min-h-screen flex-col py-8">

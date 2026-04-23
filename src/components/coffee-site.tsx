@@ -791,8 +791,8 @@ function EditorialProductRow({ coffee, reverse }: { coffee: Coffee; reverse?: bo
 
 function ProductCard({ coffee }: { coffee: Coffee }) {
   return (
-    <Link to="/collection/$slug" params={{ slug: coffee.slug }} className="group block">
-      <div className="space-y-5">
+    <article className="group space-y-5">
+      <Link to="/collection/$slug" params={{ slug: coffee.slug }} className="block space-y-5">
         <div className="h-px w-full" style={{ backgroundColor: coffee.accentColor }} />
         <div className="overflow-hidden bg-surface p-6 shadow-soft transition-transform duration-700 group-hover:-translate-y-1">
           <CoffeePackage coffee={coffee} />
@@ -803,8 +803,21 @@ function ProductCard({ coffee }: { coffee: Coffee }) {
           <p className="font-serif text-xl italic text-ink-body">{coffee.nameZh}</p>
           <p className="text-sm leading-7 text-ink-muted">{coffee.flavorTags.join(" · ")}</p>
         </div>
+      </Link>
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <Button variant="editorialPrimary" size="editorial" className="w-full sm:flex-1" asChild>
+          <a href="/order" aria-label={`Select ${coffee.nameEn}`}>
+            Select <ArrowRight className="h-4 w-4" />
+          </a>
+        </Button>
+        <Button variant="editorialGhost" size="editorial" className="w-full sm:flex-1" asChild>
+          <Link to="/collection/$slug" params={{ slug: coffee.slug }}>
+            Explore Flavors <ChevronRight className="h-4 w-4" />
+          </Link>
+        </Button>
       </div>
-    </Link>
+    </article>
   );
 }
 

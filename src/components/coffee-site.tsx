@@ -5,8 +5,7 @@ import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
-import heroEditorialSlowPourover from "@/assets/hero-editorial-slow-pourover.mp4.asset.json";
-import heroPourOver from "@/assets/hero-pour-over.jpg";
+import heroEditorialCalmStillLife from "@/assets/hero-editorial-calm-still-life.mp4.asset.json";
 import morningStrip from "@/assets/morning-strip.jpg";
 import philosophyBeans from "@/assets/philosophy-beans.jpg";
 import { coffeeSeries, coffees, getCoffeeBySlug } from "@/data/coffees";
@@ -17,7 +16,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronRight, Minus } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 
-const heroVideo = heroEditorialSlowPourover.url;
+const heroVideo = heroEditorialCalmStillLife.url;
 
 type Coffee = (typeof coffees)[number];
 type Faq = (typeof faqs)[number];
@@ -101,19 +100,17 @@ export function HomePage() {
 
       <section className="relative flex min-h-screen items-end overflow-hidden bg-background">
         <video
-          className="absolute inset-0 h-full w-full scale-[1.015] object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-center"
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          poster={heroPourOver}
           aria-hidden="true"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="cinematic-overlay absolute inset-0" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
 
         <div className="container-editorial relative z-10 w-full pb-16 pt-32 md:pb-24 md:pt-40">
           <HeroReveal className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.55fr)] lg:items-end">
@@ -801,7 +798,7 @@ function CoffeePackage({ coffee, large }: { coffee: Coffee; large?: boolean }) {
   if (prefersReducedMotion) return content;
 
   return (
-    <motion.div whileHover={{ scale: 1.035 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+    <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 1.1, ease: "easeOut" }}>
       {content}
     </motion.div>
   );

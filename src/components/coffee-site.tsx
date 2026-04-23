@@ -1,64 +1,36 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { EditorialReveal, HeroReveal, OrderButton, SEO, SectionLabel, siteMeta } from "@/components/site";
+import { EditorialReveal, HeroReveal, SEO, SectionLabel } from "@/components/site";
 import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
 import heroPourOver from "@/assets/hero-pour-over.jpg";
+import heroPourLoop from "@/assets/hero-pour-loop.mp4.asset.json";
 import morningStrip from "@/assets/morning-strip.jpg";
 import philosophyBeans from "@/assets/philosophy-beans.jpg";
-import { coffeeSeries, coffees, getCoffeeBySlug } from "@/data/coffees";
-import { faqs } from "@/data/faqs";
+import { coffees, getCoffeeBySlug } from "@/data/coffees";
 import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ChevronRight, Minus } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 
-const heroVideo = "/hero-editorial.mp4";
+const heroVideo = heroPourLoop.url;
 
 type Coffee = (typeof coffees)[number];
 type Faq = (typeof faqs)[number];
 
-const featuredCollections = [
-  {
-    title: "Morning Rituals",
-    description: "Luminous cups for early light, paperbacks left open, and first thoughts before the world arrives.",
-    image: morningStrip,
-    href: "/collection",
-  },
-  {
-    title: "Daily Objects",
-    description: "Coffee as an object of atmosphere — balanced, tactile, and designed to live beautifully on the shelf.",
-    image: dailyStrip,
-    href: "/shop",
-  },
-  {
-    title: "Evening Studies",
-    description: "Deeper roasts and quieter moods, intended for reflective rooms and long, unhurried conversations.",
-    image: eveningStrip,
-    href: "/journal",
-  },
-] as const;
-
 const journalEntries = [
   {
-    title: "Rooms for Slow Coffee",
-    category: "Journal",
-    description: "How light, ceramics, and silence shape the taste of a morning cup.",
+    title: "Roots of Slow Coffee",
     image: dailyStrip,
   },
   {
     title: "On Founder Heritage",
-    category: "Art",
-    description: "The paintings of Elli's father and the emotional language they bring to the brand.",
     image: aboutGalleryTwo,
   },
   {
     title: "Packaging as Keepsake",
-    category: "Objects",
-    description: "Why the outer shell should feel collected, not merely purchased.",
     image: morningStrip,
   },
 ] as const;
@@ -81,21 +53,14 @@ const galleryWorks = [
   },
 ] as const;
 
-const merchandisingNotes = [
-  "Coffee releases",
-  "Found objects",
-  "Table pieces",
-  "Printed matter",
-] as const;
-
 export function HomePage() {
-  const featuredProducts = coffees.slice(0, 4);
+  const featuredProducts = coffees.slice(0, 8);
 
   return (
     <>
       <SEO
-        title="la petite.elli — A quiet luxury in everyday rituals"
-        description="An editorial boutique world of coffee, art, objects, and lifestyle pieces shaped with quiet luxury and refined daily rituals."
+        title="la petite.elli — Calm editorial coffee collection"
+        description="A quiet ritual of coffee, art, and everyday living. Explore eight small-batch coffee flavors crafted for everyday rituals."
       />
 
       <section className="relative flex min-h-screen items-end overflow-hidden bg-background">
@@ -117,31 +82,22 @@ export function HomePage() {
         <div className="container-editorial relative z-10 w-full pb-16 pt-32 md:pb-24 md:pt-40">
           <HeroReveal className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.55fr)] lg:items-end">
             <div className="max-w-[760px] space-y-6 text-primary-foreground">
-              <SectionLabel>Vancouver · Est. 2009</SectionLabel>
               <h1 className="font-serif text-6xl font-light leading-[0.95] tracking-[0.01em] md:text-[7rem] lg:text-[8rem]">
                 la petite.elli
               </h1>
               <p className="max-w-[520px] font-serif text-2xl font-light italic leading-[1.35] text-primary-foreground/88 md:text-3xl">
-                A quiet luxury in everyday rituals
+                A quiet ritual of coffee, art, and everyday living.
               </p>
-              <div className="flex flex-col gap-4 pt-3 sm:flex-row">
+              <p className="max-w-[520px] text-sm uppercase tracking-[0.16em] text-primary-foreground/76">
+                8 small-batch coffee flavors, crafted for everyday rituals.
+              </p>
+              <div className="pt-3">
                 <Button variant="editorialPrimary" size="editorial" asChild>
                   <Link to="/collection">
-                    Explore Collection <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button variant="editorialGhost" size="editorial" asChild>
-                  <Link to="/shop">
-                    Enter the Shop <ChevronRight className="h-4 w-4" />
+                    Explore Flavors <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
               </div>
-            </div>
-
-            <div className="justify-self-end border-l border-primary-foreground/30 pl-6 text-sm leading-7 text-primary-foreground/78">
-              <p className="max-w-[260px]">
-                From coffee into a broader boutique language — objects, art, and pieces for the table, shelf, and room.
-              </p>
             </div>
           </HeroReveal>
         </div>
@@ -149,87 +105,19 @@ export function HomePage() {
 
       <section className="section-space bg-background">
         <div className="container-editorial space-y-12">
-          <EditorialReveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-[720px] space-y-4">
-              <SectionLabel>Featured Collection</SectionLabel>
-              <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-                An editorial boutique built around atmosphere, not urgency.
-              </h2>
-            </div>
-            <Link to="/shop" className="editorial-link text-sm uppercase tracking-[0.16em] text-ink-primary">
-              View all collections <ArrowRight className="h-4 w-4" />
-            </Link>
-          </EditorialReveal>
-
-          <div className="grid gap-6 lg:grid-cols-3">
-            {featuredCollections.map((collection, index) => (
-              <EditorialReveal key={collection.title} delay={index * 0.06}>
-                <Link to={collection.href} className="group block space-y-4">
-                  <div className="overflow-hidden bg-surface shadow-soft">
-                    <img
-                      src={collection.image}
-                      alt={collection.title}
-                      className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="space-y-2 border-t border-border pt-4">
-                    <h3 className="font-serif text-3xl font-light text-ink-primary">{collection.title}</h3>
-                    <p className="max-w-[34ch] text-sm leading-7 text-ink-body">{collection.description}</p>
-                  </div>
-                </Link>
-              </EditorialReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-space bg-surface">
-        <div className="container-editorial grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.05fr)] lg:gap-18">
-          <EditorialReveal className="space-y-6">
-            <SectionLabel>Brand Story</SectionLabel>
-            <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-              Begun as a coffee house of feeling, evolving into a boutique language of living.
-            </h2>
-            <div className="space-y-5 text-base leading-[1.9] text-ink-body md:text-[17px]">
-              <p>
-                la petite.elli started with roasted coffee, but the heart of it has always been larger: a way of arranging daily life with tenderness, restraint, and depth.
-              </p>
-              <p>
-                The cup came first. Then the shelf around it, the linen beneath it, the inherited painting on the wall, the object kept because it altered the atmosphere of a room.
-              </p>
-              <p className="font-serif text-[1.2em] font-light italic leading-[1.6] text-ink-primary">
-                This is not a coffee shop website. It is a small editorial world for people who care how living feels.
-              </p>
-            </div>
-            <Link to="/about" className="editorial-link text-sm uppercase tracking-[0.16em] text-ink-primary">
-              Read the story <ArrowRight className="h-4 w-4" />
-            </Link>
-          </EditorialReveal>
-
-          <EditorialReveal>
-            <figure className="tint-panel overflow-hidden p-4 md:p-6">
-              <img
-                src={philosophyBeans}
-                alt="Textural still life representing the tactile brand story of la petite.elli"
-                className="aspect-[4/5] w-full object-cover"
-                loading="lazy"
-              />
-            </figure>
-          </EditorialReveal>
-        </div>
-      </section>
-
-      <section className="section-space bg-background">
-        <div className="container-editorial space-y-12">
           <EditorialReveal className="max-w-[720px] space-y-4">
-            <SectionLabel>Product Showcase</SectionLabel>
-            <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-              Packaging artwork designed to feel collected, held, and kept.
-            </h2>
+            <div className="space-y-4">
+              <SectionLabel>Flavors</SectionLabel>
+              <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
+                Our Flavors
+              </h2>
+              <p className="max-w-[620px] text-base leading-[1.8] text-ink-body">
+                A small collection of eight blends, each with its own mood and moment.
+              </p>
+            </div>
           </EditorialReveal>
 
-          <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-x-6 gap-y-10 grid-cols-2 xl:grid-cols-4">
             {featuredProducts.map((coffee, index) => (
               <EditorialReveal key={coffee.slug} delay={index * 0.05}>
                 <ProductCard coffee={coffee} />
@@ -240,15 +128,27 @@ export function HomePage() {
       </section>
 
       <section className="section-space bg-surface-strong">
-        <div className="container-editorial grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <EditorialReveal className="space-y-5">
-            <SectionLabel>Art / Heritage</SectionLabel>
+        <div className="container-editorial grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-18">
+          <EditorialReveal className="space-y-6">
+            <SectionLabel>About</SectionLabel>
             <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-              Paintings by the founder&apos;s father remain part of the brand&apos;s emotional architecture.
+              A story shaped by coffee, art, and design.
             </h2>
-            <p className="max-w-[40ch] text-base leading-[1.85] text-ink-body">
-              They inform the palette, the pacing, and the sense that each release belongs as much to an exhibition wall as to a pantry shelf.
-            </p>
+            <div className="space-y-5 text-base leading-[1.9] text-ink-body md:text-[17px]">
+              <p>
+                La petite.elli began as a quiet expression of everyday rituals — a cup of coffee, a moment of stillness, a slower way of living.
+              </p>
+              <p>
+                Each blend is created in small batches, not just to be consumed, but to be experienced — something to return to, again and again.
+              </p>
+              <p>
+                The packaging carries original artwork by the founder’s father, adding a subtle emotional layer to each product.
+              </p>
+              <p>
+                The website reflects the same intention — calm, minimal, and quietly refined.
+              </p>
+              <p>Together, coffee, art, and design form a single experience.</p>
+            </div>
           </EditorialReveal>
 
           <div className="grid gap-5 md:grid-cols-3">
@@ -275,10 +175,13 @@ export function HomePage() {
       <section className="section-space bg-background">
         <div className="container-editorial grid gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:items-start">
           <EditorialReveal className="space-y-4">
-            <SectionLabel>Journal / Lifestyle</SectionLabel>
+            <SectionLabel>Journal</SectionLabel>
             <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-              Notes from a slower, more cultivated domestic life.
+              Notes on a slower life
             </h2>
+            <p className="max-w-[520px] text-base leading-[1.8] text-ink-body">
+              Stories on coffee, objects, art, and everyday living.
+            </p>
           </EditorialReveal>
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -291,15 +194,20 @@ export function HomePage() {
                     className="aspect-[3/4] w-full object-cover"
                     loading="lazy"
                   />
-                  <div className="space-y-2 border-t border-border pt-4">
-                    <p className="text-[11px] uppercase tracking-[0.16em] text-ink-muted">{entry.category}</p>
+                  <div className="border-t border-border pt-4">
                     <h3 className="font-serif text-3xl font-light text-ink-primary">{entry.title}</h3>
-                    <p className="text-sm leading-7 text-ink-body">{entry.description}</p>
                   </div>
                 </article>
               </EditorialReveal>
             ))}
           </div>
+          <EditorialReveal>
+            <Button variant="editorialGhost" size="editorial" asChild>
+              <Link to="/journal">
+                Read Journal <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </EditorialReveal>
         </div>
       </section>
     </>

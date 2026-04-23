@@ -18,7 +18,28 @@ import type { CSSProperties, ReactNode } from "react";
 const heroVideo = heroPourLoop.url;
 
 type Coffee = (typeof coffees)[number];
-type Faq = (typeof faqs)[number];
+
+const productImages = [
+  morningStrip,
+  dailyStrip,
+  eveningStrip,
+  aboutGalleryOne,
+  aboutGalleryTwo,
+  philosophyBeans,
+  morningStrip,
+  dailyStrip,
+] as const;
+
+const coffeePrices: Record<string, string> = {
+  breakfast: "$24",
+  sunrise: "$24",
+  "golden-hour": "$25",
+  "yirgacheffe-bloom": "$27",
+  "daily-ritual": "$24",
+  "happy-hour": "$25",
+  midnight: "$26",
+  "mandheling-noir": "$27",
+};
 
 const journalEntries = [
   {
@@ -52,6 +73,18 @@ const galleryWorks = [
     image: aboutGalleryTwo,
   },
 ] as const;
+
+function getCoffeeImage(index: number) {
+  return productImages[index % productImages.length];
+}
+
+function getCoffeePrice(slug: string) {
+  return coffeePrices[slug] ?? "$24";
+}
+
+function getCoffeeSummary(coffee: Coffee) {
+  return coffee.flavorTags.slice(0, 2).join(" · ");
+}
 
 export function HomePage() {
   const featuredProducts = coffees.slice(0, 8);

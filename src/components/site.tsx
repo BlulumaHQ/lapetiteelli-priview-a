@@ -19,7 +19,7 @@ export const siteMeta = {
 
 const navItems = [
   { label: "Home", to: "/" as const },
-  { label: "Flavors", to: "/collection" as const },
+  { label: "Shop", to: "/collection" as const },
   { label: "About", to: "/about" as const },
   { label: "Journal", to: "/journal" as const },
 ];
@@ -304,7 +304,6 @@ function SiteFooter() {
               <p className="eyebrow-label text-ink-primary">Boutique</p>
               <div className="flex flex-col gap-2.5">
                 <FooterLink to="/collection">Shop</FooterLink>
-                <FooterLink to="/collection">Collections</FooterLink>
                 <FooterLink to="/journal">Journal</FooterLink>
                 <FooterLink to="/about">About</FooterLink>
                 <FooterLink to="mailto:hello@lapetiteelli.com">Contact</FooterLink>

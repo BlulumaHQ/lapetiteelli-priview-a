@@ -4,13 +4,14 @@ import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
-import labelBreakfast from "@/assets/label-breakfast.jpg";
-import labelDailyRitualAlt from "@/assets/label-daily-ritual-alt.jpg";
-import labelDailyRitual from "@/assets/label-daily-ritual.jpg";
-import labelGoldenHour from "@/assets/label-golden-hour.jpg";
-import labelHappyHour from "@/assets/label-happy-hour.jpg";
-import labelMidnight from "@/assets/label-midnight.jpg";
-import labelSunrise from "@/assets/label-sunrise.jpg";
+import bagBreakfast from "@/assets/bag-breakfast.webp";
+import bagDailyRitual from "@/assets/bag-daily-ritual.webp";
+import bagGoldenHour from "@/assets/bag-golden-hour.webp";
+import bagHappyHour from "@/assets/bag-happy-hour.webp";
+import bagMandhelingNoir from "@/assets/bag-mandheling-noir.webp";
+import bagMidnight from "@/assets/bag-midnight.webp";
+import bagSunrise from "@/assets/bag-sunrise.webp";
+import bagYirgacheffe from "@/assets/bag-yirgacheffe-bloom.webp";
 import morningStrip from "@/assets/morning-strip.jpg";
 import philosophyBeans from "@/assets/philosophy-beans.jpg";
 import { coffees, getCoffeeBySlug } from "@/data/coffees";
@@ -45,14 +46,14 @@ const coffeePrices: Record<string, string> = {
 };
 
 const coffeeLabelImages: Record<string, string> = {
-  breakfast: labelBreakfast,
-  sunrise: labelSunrise,
-  "golden-hour": labelGoldenHour,
-  "yirgacheffe-bloom": labelSunrise,
-  "daily-ritual": labelDailyRitual,
-  "happy-hour": labelHappyHour,
-  midnight: labelMidnight,
-  "mandheling-noir": labelDailyRitualAlt,
+  breakfast: bagBreakfast,
+  sunrise: bagSunrise,
+  "golden-hour": bagGoldenHour,
+  "yirgacheffe-bloom": bagYirgacheffe,
+  "daily-ritual": bagDailyRitual,
+  "happy-hour": bagHappyHour,
+  midnight: bagMidnight,
+  "mandheling-noir": bagMandhelingNoir,
 };
 
 const journalEntries = [
@@ -353,9 +354,7 @@ export function CoffeeDetailPage({ slug }: { slug: string }) {
           </EditorialReveal>
 
           <EditorialReveal>
-            <div className="tint-panel p-8 md:p-12">
-              <CoffeePackage coffee={coffee} large />
-            </div>
+            <CoffeePackage coffee={coffee} large labelImage={coffeeLabelImages[coffee.slug]} />
           </EditorialReveal>
         </div>
       </section>
@@ -546,18 +545,13 @@ function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) 
 function CoffeePackage({ coffee, large, compact, labelImage }: { coffee: Coffee; large?: boolean; compact?: boolean; labelImage?: string }) {
   const prefersReducedMotion = useReducedMotion();
   const content = (
-    <div className={cn("mx-auto w-full", compact ? "max-w-none" : "max-w-[280px]", large && "max-w-[360px]")}>
-      <div className={cn("rounded-[8px] border border-package-border bg-package-bag shadow-[0_22px_48px_-28px_color-mix(in_oklab,var(--color-ink-primary)_34%,transparent)]", compact ? "px-2 pb-3 pt-2 sm:px-3 sm:pb-4 sm:pt-3" : "px-3 pb-4 pt-3 md:px-4 md:pb-5 md:pt-4")}>
-        <div className={cn("mx-auto rounded-b-[10px] border-x border-b border-package-border bg-package-shell/70", compact ? "mb-2.5 h-3 w-[22%]" : "mb-3 h-3.5 w-[24%]")} />
-        <div className={cn("rounded-[4px] border border-package-border bg-package-shell", compact ? "p-2" : "p-3 md:p-4")}>
-          <img
-            src={labelImage ?? getCoffeeImage(0)}
-            alt={`${coffee.nameEn} coffee bag label`}
-            className="aspect-[3/4.9] w-full rounded-[2px] object-contain"
-            loading="lazy"
-          />
-        </div>
-      </div>
+    <div className={cn("mx-auto w-full", compact ? "max-w-none" : "max-w-[320px]", large && "max-w-[460px]")}>
+      <img
+        src={labelImage ?? getCoffeeImage(0)}
+        alt={`${coffee.nameEn} coffee bag`}
+        className="h-auto w-full object-contain"
+        loading="lazy"
+      />
     </div>
   );
 

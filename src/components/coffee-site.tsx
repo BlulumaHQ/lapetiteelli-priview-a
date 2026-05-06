@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { EditorialReveal, HeroReveal, SEO, SectionLabel } from "@/components/site";
 import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
+import heroBags01 from "@/assets/hero-bags-01.webp";
+import heroBags02 from "@/assets/hero-bags-02.webp";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
 import bagBreakfast from "@/assets/bag-breakfast.webp";
@@ -19,7 +21,7 @@ import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 type Coffee = (typeof coffees)[number];
 
@@ -116,6 +118,29 @@ function getCoffeeIntro(coffee: Coffee) {
   return intros[coffee.slug] ?? coffee.flavorProfile;
 }
 
+function HeroSlideshow({ slides }: { slides: string[] }) {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 5000);
+    return () => clearInterval(id);
+  }, [slides.length]);
+  return (
+    <div className="absolute inset-0">
+      {slides.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt="La petite.elli coffee collection"
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[2000ms] ease-in-out",
+            i === index ? "opacity-100" : "opacity-0",
+          )}
+        />
+      ))}
+    </div>
+  );
+}
+
 export function HomePage() {
   const featuredProducts = coffees.slice(0, 8);
 
@@ -127,11 +152,7 @@ export function HomePage() {
       />
 
       <section className="relative flex min-h-screen items-center overflow-hidden bg-background">
-        <img
-          src={aboutGalleryOne}
-          alt="La petite.elli editorial hero artwork"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
+        <HeroSlideshow slides={[heroBags01, heroBags02]} />
         <div className="cinematic-overlay absolute inset-0" />
 
         <div className="container-editorial relative z-10 w-full pb-20 pt-24 md:pb-24 md:pt-28">

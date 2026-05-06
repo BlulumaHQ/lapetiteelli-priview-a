@@ -332,6 +332,11 @@ export function HomePage() {
           </div>
         </div>
       </section>
+    </>
+  );
+}
+
+export function ShopPage() {
   return <CollectionPage />;
 }
 

@@ -6,6 +6,15 @@ import heroBags01 from "@/assets/hero-bags-01.webp";
 import heroBags02 from "@/assets/hero-bags-02.webp";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
+import lifestyleSteamWindow from "@/assets/lifestyle-steam-window.webp";
+import lifestyleBeansJar from "@/assets/lifestyle-beans-jar.webp";
+import lifestyleCakeCup from "@/assets/lifestyle-cake-cup.webp";
+import lifestyleCupMagazine from "@/assets/lifestyle-cup-magazine.webp";
+import editorialBarista from "@/assets/editorial-barista.webp";
+import editorialShelf from "@/assets/editorial-shelf.webp";
+import editorialTable from "@/assets/editorial-table.webp";
+import editorialKitchen from "@/assets/editorial-kitchen.webp";
+import editorialMachine from "@/assets/editorial-machine.webp";
 import bagBreakfast from "@/assets/bag-breakfast.webp";
 import bagDailyRitual from "@/assets/bag-daily-ritual.webp";
 import bagGoldenHour from "@/assets/bag-golden-hour.webp";
@@ -203,87 +212,124 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="section-space bg-surface-strong">
-        <div className="container-editorial grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-18">
-          <EditorialReveal className="space-y-6">
-            <SectionLabel>About</SectionLabel>
-            <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-              A story shaped by coffee, art, and design.
-            </h2>
-            <div className="space-y-5 text-base leading-[1.9] text-ink-body md:text-[17px]">
-              <p>
-                La petite.elli began as a quiet expression of everyday rituals — a cup of coffee, a moment of stillness, a slower way of living.
-              </p>
-              <p>
-                Each blend is created in small batches, not just to be consumed, but to be experienced — something to return to, again and again.
-              </p>
-              <p>
-                The packaging carries original artwork by the founder’s father, adding a subtle emotional layer to each product.
-              </p>
-              <p>
-                The website reflects the same intention — calm, minimal, and quietly refined.
-              </p>
-              <p>Together, coffee, art, and design form a single experience.</p>
-            </div>
+      {/* Curated Everyday Living */}
+      <section className="section-space bg-cream-soft">
+        <div className="container-editorial grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
+          <EditorialReveal>
+            <figure className="space-y-3">
+              <img
+                src={lifestyleSteamWindow}
+                alt="A warm cup of coffee resting on stacked Kinfolk volumes by a quiet window."
+                className="aspect-[4/5] w-full object-cover"
+                loading="lazy"
+              />
+              <figcaption className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+                Morning light, Volume VII
+              </figcaption>
+            </figure>
           </EditorialReveal>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {galleryWorks.map((work, index) => (
-              <EditorialReveal key={work.title} delay={index * 0.05}>
-                <figure className="space-y-3">
-                  <img
-                    src={work.image}
-                    alt={work.title}
-                    className="aspect-[4/5] w-full object-cover"
-                    loading="lazy"
-                  />
-                  <figcaption className="space-y-1 border-t border-border pt-3">
-                    <p className="font-serif text-2xl font-light text-ink-primary">{work.title}</p>
-                    <p className="text-sm text-ink-muted">{work.subtitle}</p>
-                  </figcaption>
+          <div className="flex flex-col justify-between gap-10">
+            <EditorialReveal className="space-y-5">
+              <SectionLabel>Curated Everyday Living</SectionLabel>
+              <h2 className="font-serif text-4xl font-light leading-[1.05] text-ink-primary md:text-5xl">
+                A boutique of quiet objects for the slow hours.
+              </h2>
+              <p className="text-base leading-[1.85] text-ink-body md:text-[17px]">
+                la petite.elli is a small lifestyle house gathering coffee, tea, brewing tools, and home objects chosen for one feeling — the warmth of an unhurried morning. Each piece is selected for the way it ages in your hands, not for the way it photographs.
+              </p>
+              <p className="text-base leading-[1.85] text-ink-body md:text-[17px]">
+                We are building a calmer cabinet of everyday things, one season at a time.
+              </p>
+            </EditorialReveal>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <EditorialReveal delay={0.05}>
+                <figure className="space-y-2">
+                  <img src={lifestyleBeansJar} alt="A glazed brown stoneware mug atop two Kinfolk magazines." className="aspect-[3/4] w-full object-cover" loading="lazy" />
+                  <figcaption className="text-xs uppercase tracking-[0.16em] text-ink-muted">A vessel that wears in</figcaption>
                 </figure>
               </EditorialReveal>
-            ))}
+              <EditorialReveal delay={0.1}>
+                <figure className="space-y-2">
+                  <img src={lifestyleCakeCup} alt="Olive cake and dark coffee on a linen runner with dried branches." className="aspect-[3/4] w-full object-cover" loading="lazy" />
+                  <figcaption className="text-xs uppercase tracking-[0.16em] text-ink-muted">An afternoon paused</figcaption>
+                </figure>
+              </EditorialReveal>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* The Collections */}
       <section className="section-space bg-background">
-        <div className="container-editorial grid gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:items-start">
-          <EditorialReveal className="space-y-4">
-            <SectionLabel>Journal</SectionLabel>
-            <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-              Notes on a slower life
-            </h2>
-            <p className="max-w-[520px] text-base leading-[1.8] text-ink-body">
-              Stories on coffee, objects, art, and everyday living.
+        <div className="container-editorial space-y-12">
+          <EditorialReveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-[560px] space-y-4">
+              <SectionLabel>The Collections</SectionLabel>
+              <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
+                A house in five chapters.
+              </h2>
+            </div>
+            <p className="max-w-[420px] text-sm leading-7 text-ink-muted">
+              Coffee began the story. Tea, tools, and quiet objects for the home are arriving in their own season.
             </p>
           </EditorialReveal>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {journalEntries.map((entry, index) => (
-              <EditorialReveal key={entry.title} delay={index * 0.04}>
-                <article className="space-y-4">
-                  <img
-                    src={entry.image}
-                    alt={entry.title}
-                    className="aspect-[3/4] w-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="border-t border-border pt-4">
-                    <h3 className="font-serif text-3xl font-light text-ink-primary">{entry.title}</h3>
-                  </div>
-                </article>
-              </EditorialReveal>
-            ))}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            <CollectionCard image={editorialMachine} eyebrow="Now Pouring" title="Coffee" caption="Eight small-batch flavors." to="/collection" />
+            <CollectionCard image={lifestyleCupMagazine} eyebrow="Soon" title="Tea" caption="A quieter afternoon ritual." />
+            <CollectionCard image={lifestyleBeansJar} eyebrow="Soon" title="Home Objects" caption="Vessels for slower meals." />
+            <CollectionCard image={lifestyleSteamWindow} eyebrow="Soon" title="Brewing Tools" caption="The simple instruments of pour." />
+            <CollectionCard image={lifestyleCakeCup} eyebrow="Seasonal" title="Seasonal Living" caption="Curated pieces, twice a year." />
           </div>
-          <EditorialReveal>
+        </div>
+      </section>
+
+      {/* Stories & Rituals */}
+      <section className="section-space bg-surface-strong">
+        <div className="container-editorial space-y-12">
+          <EditorialReveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-[560px] space-y-4">
+              <SectionLabel>Stories &amp; Rituals</SectionLabel>
+              <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
+                Notes from a slower kitchen.
+              </h2>
+            </div>
             <Button variant="editorialGhost" size="editorial" asChild>
               <Link to="/journal">
-                Read Journal <ArrowRight className="h-4 w-4" />
+                Read the Journal <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </EditorialReveal>
+
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
+            <EditorialReveal>
+              <article className="space-y-5">
+                <img src={editorialBarista} alt="A barista handing a wrapped coffee bag to a customer in a sunlit boutique." className="aspect-[4/3] w-full object-cover" loading="lazy" />
+                <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">Featured · Issue No. 04</p>
+                <h3 className="font-serif text-3xl font-light leading-tight text-ink-primary md:text-4xl">
+                  The Quiet Ritual of Morning Coffee
+                </h3>
+                <p className="max-w-[560px] text-base leading-[1.85] text-ink-body">
+                  Why the first ten minutes after waking, spent with warm cup in hand, set the temperature of an entire day — a short essay on attention.
+                </p>
+              </article>
+            </EditorialReveal>
+            <div className="flex flex-col gap-10">
+              <EditorialReveal delay={0.05}>
+                <article className="space-y-3">
+                  <img src={editorialKitchen} alt="Two single-origin coffee bags on a sunlit kitchen counter." className="aspect-[4/5] w-full object-cover" loading="lazy" />
+                  <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">Living</p>
+                  <h3 className="font-serif text-2xl font-light text-ink-primary">Why warm lighting changes a home.</h3>
+                </article>
+              </EditorialReveal>
+              <EditorialReveal delay={0.1}>
+                <article className="space-y-3">
+                  <img src={editorialShelf} alt="A row of coffee bags lined up on a wooden shelf in soft afternoon light." className="aspect-[4/5] w-full object-cover" loading="lazy" />
+                  <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">Objects</p>
+                  <h3 className="font-serif text-2xl font-light text-ink-primary">The pieces we keep for years.</h3>
+                </article>
+              </EditorialReveal>
+            </div>
+          </div>
         </div>
       </section>
     </>
@@ -453,79 +499,211 @@ export function CoffeeDetailPage({ slug }: { slug: string }) {
 export function AboutPage() {
   return (
     <>
-      <SEO title="About — la petite.elli" description="A story shaped by coffee, art, and design." />
-      <section className="section-space bg-background">
-        <EditorialReveal className="container-editorial max-w-[900px] space-y-5">
-          <SectionLabel>About</SectionLabel>
-          <h1 className="font-serif text-6xl font-light leading-[1.02] tracking-tight text-ink-primary md:text-8xl">
-            A story shaped by coffee, art, and design.
-          </h1>
-        </EditorialReveal>
-      </section>
+      <SEO title="About — la petite.elli" description="A boutique lifestyle brand inspired by warmth, ritual, and intentional everyday moments." />
 
-      <section className="bg-background pb-12">
-        <EditorialReveal className="container-editorial mx-auto max-w-[760px] space-y-5 text-base leading-[1.9] text-ink-body md:text-[17px]">
-          <p>
-            La petite.elli began as a quiet expression of everyday rituals — a cup of coffee, a moment of stillness, a slower way of living.
-          </p>
-          <p>
-            Each blend is created in small batches, not just to be consumed, but to be experienced — something to return to, again and again.
-          </p>
-          <p>
-            The packaging carries original artwork by the founder’s father, adding a subtle emotional layer to each product.
-          </p>
-          <p>
-            The website reflects the same intention — calm, minimal, and quietly refined.
-          </p>
-          <p>Together, coffee, art, and design form a single experience.</p>
-        </EditorialReveal>
-      </section>
-
-      <section className="section-space bg-surface">
-        <div className="container-editorial grid gap-6 md:grid-cols-2 xl:grid-cols-[1.15fr_0.85fr_0.85fr]">
-          {galleryWorks.map((item, index) => (
-            <EditorialReveal key={item.title} delay={index * 0.04}>
-              <figure className="space-y-3">
-                <img src={item.image} alt={item.title} className="aspect-[4/5] w-full object-cover" loading="lazy" />
-                <figcaption className="text-sm text-ink-muted">{item.subtitle}</figcaption>
-              </figure>
-            </EditorialReveal>
-          ))}
+      <section className="relative overflow-hidden bg-background">
+        <img src={editorialTable} alt="Four coffee bags arranged on a wooden table beside a framed painting in soft afternoon light." className="h-[68vh] w-full object-cover md:h-[78vh]" loading="eager" />
+        <div className="cinematic-overlay absolute inset-0" />
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="container-editorial pb-14 md:pb-20">
+            <div className="max-w-[720px] space-y-5 text-primary-foreground">
+              <SectionLabel>About</SectionLabel>
+              <h1 className="font-serif text-5xl font-light leading-[1.02] tracking-tight md:text-7xl">
+                Objects for Slower Living.
+              </h1>
+              <p className="max-w-[520px] font-serif text-xl font-light italic leading-[1.4] text-primary-foreground/90 md:text-2xl">
+                A boutique lifestyle brand inspired by warmth, ritual, and intentional everyday moments.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
+      {/* Brand Philosophy */}
+      <section className="section-space bg-cream-soft">
+        <div className="container-editorial grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+          <EditorialReveal className="space-y-4">
+            <SectionLabel>Philosophy</SectionLabel>
+            <h2 className="font-serif text-4xl font-light leading-[1.05] text-ink-primary md:text-5xl">
+              We are not selling things. We are gathering atmosphere.
+            </h2>
+          </EditorialReveal>
+          <EditorialReveal className="space-y-6 text-base leading-[1.9] text-ink-body md:text-[17px]">
+            <p>
+              la petite.elli is a quiet house of curated objects — a place where coffee, tea, brewing instruments, and home pieces are chosen for the warmth they bring to an ordinary Tuesday afternoon.
+            </p>
+            <p>
+              Nothing here is loud. Each piece is selected slowly, with the patience of a long meal: tactile materials, restrained shapes, and the kind of design that disappears into your routine until one morning you realize you cannot imagine the cabinet without it.
+            </p>
+            <p>
+              Our work is calmness. Our currency is attention. Our hope is that, in a faster world, our small corner stays soft.
+            </p>
+          </EditorialReveal>
+        </div>
+      </section>
+
+      {/* The Future */}
+      <section className="section-space bg-background">
+        <div className="container-editorial space-y-12">
+          <EditorialReveal className="max-w-[720px] space-y-4">
+            <SectionLabel>The Future of the House</SectionLabel>
+            <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
+              A boutique that grows in seasons, not collections.
+            </h2>
+            <p className="text-base leading-[1.85] text-ink-body md:text-[17px]">
+              Coffee is the first chapter. In time, the shelves will fill — gently, never all at once.
+            </p>
+          </EditorialReveal>
+          <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-6">
+            {[
+              { label: "Coffee", note: "Now pouring" },
+              { label: "Tea", note: "Spring" },
+              { label: "Brewing Tools", note: "Autumn" },
+              { label: "Home Decor", note: "Winter" },
+              { label: "Lifestyle Accessories", note: "Soon" },
+              { label: "Seasonal Curated", note: "Twice a year" },
+            ].map((item, i) => (
+              <EditorialReveal key={item.label} delay={i * 0.04}>
+                <div className="space-y-2 border-t border-border pt-4">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-ink-muted">{item.note}</p>
+                  <p className="font-serif text-2xl font-light text-ink-primary">{item.label}</p>
+                </div>
+              </EditorialReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Story */}
+      <section className="section-space bg-surface-strong">
+        <div className="container-editorial grid gap-5 md:grid-cols-6">
+          <EditorialReveal className="md:col-span-4">
+            <img src={editorialMachine} alt="A single Breakfast blend coffee bag beside an espresso machine in a warm sunlit kitchen." className="aspect-[4/3] w-full object-cover" loading="lazy" />
+          </EditorialReveal>
+          <EditorialReveal className="md:col-span-2" delay={0.05}>
+            <img src={editorialBarista} alt="A barista in a linen apron passes a wrapped coffee bag across a wooden counter." className="aspect-[3/4] w-full object-cover" loading="lazy" />
+          </EditorialReveal>
+          <EditorialReveal className="md:col-span-2" delay={0.1}>
+            <img src={lifestyleCupMagazine} alt="An overhead view of black coffee on linen beside an open Kinfolk magazine." className="aspect-[3/4] w-full object-cover" loading="lazy" />
+          </EditorialReveal>
+          <EditorialReveal className="md:col-span-4" delay={0.15}>
+            <img src={lifestyleSteamWindow} alt="A glazed mug of coffee resting on stacked Kinfolk volumes by a quiet window." className="aspect-[4/3] w-full object-cover" loading="lazy" />
+          </EditorialReveal>
+        </div>
       </section>
     </>
   );
 }
 
+const journalEditorial = [
+  {
+    eyebrow: "Featured · No. 04",
+    title: "The Quiet Ritual of Morning Coffee",
+    excerpt: "A short essay on the first ten unhurried minutes of the day, and how a warm cup quietly sets the temperature of everything that follows.",
+    image: editorialBarista,
+    span: "lg:col-span-4",
+    aspect: "aspect-[4/3]",
+  },
+  {
+    eyebrow: "Living",
+    title: "Why Warm Lighting Changes a Home",
+    excerpt: "On 2700K bulbs, late paper lanterns, and the quiet rearrangement of an entire room with one switch.",
+    image: editorialKitchen,
+    span: "lg:col-span-2",
+    aspect: "aspect-[3/4]",
+  },
+  {
+    eyebrow: "Routine",
+    title: "Building a Slower Everyday",
+    excerpt: "Three small subtractions — and the surprising amount of room they leave behind for what actually matters.",
+    image: lifestyleCakeCup,
+    span: "lg:col-span-3",
+    aspect: "aspect-[4/5]",
+  },
+  {
+    eyebrow: "Objects",
+    title: "The Pieces We Keep for Years",
+    excerpt: "A linen napkin, a chipped mug, a wooden spoon worn smooth at the handle — a love letter to the things that quietly stay.",
+    image: lifestyleBeansJar,
+    span: "lg:col-span-3",
+    aspect: "aspect-[4/5]",
+  },
+  {
+    eyebrow: "Atmosphere",
+    title: "The Calm of an Unhurried Kitchen",
+    excerpt: "Why some rooms ask you to whisper, and how to design a kitchen that exhales when you walk in.",
+    image: editorialMachine,
+    span: "lg:col-span-2",
+    aspect: "aspect-[3/4]",
+  },
+  {
+    eyebrow: "Letter",
+    title: "Notes from the Studio, Spring",
+    excerpt: "A short letter on the new season, the colour of morning light at 7:14, and what is quietly arriving on the shelves.",
+    image: null,
+    span: "lg:col-span-4",
+    aspect: "aspect-[4/3]",
+  },
+] as const;
+
 export function JournalPage() {
   return (
     <>
-      <SEO title="Journal — la petite.elli" description="Stories on coffee, objects, art, and everyday living." />
-      <section className="section-space bg-background">
-        <div className="container-editorial space-y-12">
-          <EditorialReveal className="max-w-[820px] space-y-4">
-            <SectionLabel>Journal</SectionLabel>
-            <h1 className="font-serif text-6xl font-light leading-[1.02] tracking-tight text-ink-primary md:text-8xl">
-              Notes on a slower life
-            </h1>
-            <p className="max-w-[560px] text-base leading-[1.8] text-ink-body">
-              Stories on coffee, objects, art, and everyday living.
-            </p>
-          </EditorialReveal>
+      <SEO title="Journal — la petite.elli" description="Stories, rituals, and quiet moments from a boutique lifestyle house." />
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {journalEntries.map((entry, index) => (
-              <EditorialReveal key={entry.title} delay={index * 0.04}>
-                <article className="space-y-4">
-                  <img src={entry.image} alt={entry.title} className="aspect-[3/4] w-full object-cover" loading="lazy" />
-                  <div className="border-t border-border pt-4">
-                    <h2 className="font-serif text-3xl font-light text-ink-primary">{entry.title}</h2>
-                  </div>
-                </article>
-              </EditorialReveal>
-            ))}
+      <section className="relative overflow-hidden bg-background">
+        <img src={editorialKitchen} alt="Two coffee bags resting on a sunlit kitchen counter beside flowers and an open book." className="h-[60vh] w-full object-cover md:h-[72vh]" loading="eager" />
+        <div className="cinematic-overlay absolute inset-0" />
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="container-editorial pb-12 md:pb-16">
+            <div className="max-w-[720px] space-y-4 text-primary-foreground">
+              <SectionLabel>Journal</SectionLabel>
+              <h1 className="font-serif text-5xl font-light leading-[1.02] tracking-tight md:text-7xl">
+                Stories, Rituals &amp; Quiet Moments.
+              </h1>
+              <p className="max-w-[480px] text-sm uppercase tracking-[0.16em] text-primary-foreground/80">
+                A small editorial archive from the boutique.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Featured story */}
+      <section className="section-space bg-background">
+        <div className="container-editorial">
+          <EditorialReveal className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16">
+            <img src={editorialShelf} alt="A row of la petite.elli coffee bags on a wooden boutique shelf in late afternoon light." className="aspect-[4/3] w-full object-cover" loading="lazy" />
+            <div className="space-y-5">
+              <p className="text-xs uppercase tracking-[0.18em] text-ink-muted">Editor's Letter · Issue No. 03</p>
+              <h2 className="font-serif text-4xl font-light leading-[1.05] text-ink-primary md:text-5xl">
+                A Boutique That Pours Quietly.
+              </h2>
+              <p className="text-base leading-[1.85] text-ink-body md:text-[17px]">
+                Notes on opening a shelf, choosing eight blends instead of forty, and the slow patience of a small house. We did not want to make noise; we wanted to make a corner of the day softer.
+              </p>
+            </div>
+          </EditorialReveal>
+        </div>
+      </section>
+
+      {/* Editorial grid */}
+      <section className="section-space bg-cream-soft">
+        <div className="container-editorial grid gap-8 lg:grid-cols-6">
+          {journalEditorial.map((entry, i) => (
+            <EditorialReveal key={entry.title} delay={i * 0.04} className={cn("space-y-4", entry.span)}>
+              {entry.image ? (
+                <img src={entry.image} alt={entry.title} className={cn("w-full object-cover", entry.aspect)} loading="lazy" />
+              ) : (
+                <div className={cn("flex w-full items-center justify-center bg-surface-strong p-8 text-center", entry.aspect)}>
+                  <p className="font-serif text-2xl font-light italic text-ink-primary">"The room exhaled."</p>
+                </div>
+              )}
+              <p className="text-xs uppercase tracking-[0.18em] text-ink-muted">{entry.eyebrow}</p>
+              <h3 className="font-serif text-2xl font-light leading-tight text-ink-primary md:text-3xl">{entry.title}</h3>
+              <p className="text-sm leading-7 text-ink-body">{entry.excerpt}</p>
+            </EditorialReveal>
+          ))}
         </div>
       </section>
     </>
@@ -538,6 +716,39 @@ export function OrderPage() {
 
 export function WellnessPage() {
   return <HomePage />;
+}
+
+function CollectionCard({
+  image,
+  eyebrow,
+  title,
+  caption,
+  to,
+}: {
+  image: string;
+  eyebrow: string;
+  title: string;
+  caption: string;
+  to?: "/collection";
+}) {
+  const inner = (
+    <div className="group block space-y-4">
+      <div className="relative overflow-hidden">
+        <img src={image} alt={title} className="aspect-[3/4] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" loading="lazy" />
+        <div className="absolute inset-0 bg-ink-primary/0 transition-colors duration-700 group-hover:bg-ink-primary/10" />
+      </div>
+      <div className="space-y-1.5">
+        <p className="text-[10px] uppercase tracking-[0.2em] text-ink-muted">{eyebrow}</p>
+        <h3 className="font-serif text-2xl font-light text-ink-primary">{title}</h3>
+        <p className="text-xs leading-5 text-ink-muted">{caption}</p>
+      </div>
+    </div>
+  );
+  return to ? (
+    <Link to={to}>{inner}</Link>
+  ) : (
+    <div className="cursor-default opacity-95">{inner}</div>
+  );
 }
 
 function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) {

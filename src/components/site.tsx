@@ -280,69 +280,76 @@ function SiteFooter() {
     { label: "Instagram", href: siteMeta.instagramUrl, icon: Instagram },
     { label: "Facebook", href: siteMeta.facebookUrl, icon: Facebook },
     { label: "TikTok", href: siteMeta.tiktokUrl, icon: Music2 },
-    { label: "Xiaohongshu", href: siteMeta.xiaohongshuUrl, icon: ScanLine },
     { label: "LINE", href: siteMeta.lineUrl, icon: MessageCircle },
   ] as const;
 
   return (
-    <footer className="bg-surface-strong text-ink-body">
-      <div className="container-editorial py-16 md:py-20">
-        <div className="grid gap-10 border-t border-border pt-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.72fr)_220px] lg:items-start">
+    <footer className="bg-cream-soft text-ink-body">
+      <div className="container-editorial py-20 md:py-24">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.9fr)_minmax(0,1.05fr)] lg:gap-20">
+          {/* Left — brand */}
           <div className="space-y-5">
-            <Logo size="sm" className="w-[180px] md:w-[220px]" />
-            <p className="max-w-[420px] text-sm leading-7 text-ink-body">
-              A quiet coffee ritual, shaped by art and design.
+            <Logo size="sm" className="w-[200px] md:w-[240px]" />
+            <p className="max-w-[360px] font-serif text-xl font-light italic leading-[1.45] text-ink-primary md:text-2xl">
+              A boutique of quiet objects for the slow hours.
             </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted">
-              <FooterLink to="/">Home</FooterLink>
-              <FooterLink to="/collection">Flavors</FooterLink>
-              <FooterLink to="/about">About</FooterLink>
-              <FooterLink to="/journal">Journal</FooterLink>
-            </div>
+            <p className="max-w-[340px] text-sm leading-7 text-ink-muted">
+              Coffee, tea, and curated lifestyle pieces — gathered slowly, season by season.
+            </p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
-            <div className="space-y-3">
-              <p className="eyebrow-label text-ink-primary">Contact</p>
-              <FooterLink to="mailto:hello@lapetiteelli.com">hello@lapetiteelli.com</FooterLink>
+          {/* Center — navigation */}
+          <div className="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-2">
+            <div className="space-y-4">
+              <p className="eyebrow-label text-ink-primary">Boutique</p>
+              <div className="flex flex-col gap-2.5">
+                <FooterLink to="/collection">Shop</FooterLink>
+                <FooterLink to="/collection">Collections</FooterLink>
+                <FooterLink to="/journal">Journal</FooterLink>
+                <FooterLink to="/about">About</FooterLink>
+                <FooterLink to="mailto:hello@lapetiteelli.com">Contact</FooterLink>
+              </div>
             </div>
-            <div className="space-y-3">
-              <p className="eyebrow-label text-ink-primary">Social</p>
-              <div className="space-y-2">
+            <div className="space-y-4">
+              <p className="eyebrow-label text-ink-primary">Elsewhere</p>
+              <div className="flex flex-col gap-2.5">
                 {socialLinks.map(({ label, href }) => (
-                  <div key={label} className="text-sm text-ink-body">
-                    <FooterLink to={href}>{label}</FooterLink>
-                  </div>
+                  <FooterLink key={label} to={href}>{label}</FooterLink>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="justify-self-start lg:justify-self-end">
-            <div className="space-y-3 border border-border bg-background/55 p-4">
-              <p className="eyebrow-label text-ink-primary">LINE</p>
-              <div className="grid grid-cols-7 gap-1 bg-surface p-2">
-                {Array.from({ length: 49 }).map((_, index) => {
-                  const filled = [0, 1, 2, 5, 6, 7, 8, 12, 14, 16, 18, 19, 20, 22, 24, 26, 28, 30, 32, 33, 34, 36, 40, 41, 42, 46, 47, 48].includes(index);
-                  return (
-                    <span
-                      key={index}
-                      className={cn(
-                        "block h-4 w-4",
-                        filled ? "bg-ink-primary" : "bg-cream-base",
-                      )}
-                    />
-                  );
-                })}
-              </div>
-              <p className="text-xs leading-5 text-ink-muted">Scan for a quiet update on releases and rituals.</p>
-            </div>
+          {/* Right — newsletter */}
+          <div className="space-y-5">
+            <p className="eyebrow-label text-ink-primary">The Letter</p>
+            <p className="max-w-[360px] text-sm leading-7 text-ink-body">
+              A short, infrequent note on new arrivals, seasonal stories, and the quiet things we are gathering.
+            </p>
+            <form
+              onSubmit={(event) => event.preventDefault()}
+              className="flex w-full max-w-[400px] items-center border-b border-ink-primary/30 pb-2"
+            >
+              <input
+                type="email"
+                required
+                placeholder="your@email.com"
+                aria-label="Email address"
+                className="w-full bg-transparent py-2 text-sm text-ink-primary placeholder:text-ink-muted focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="shrink-0 px-2 text-[11px] uppercase tracking-[0.2em] text-ink-primary hover:opacity-70"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 text-sm text-ink-muted md:flex-row md:items-center md:justify-between">
-          <p className="text-center">© 2026 la petite.elli. All rights reserved.</p>
-          <div className="flex items-center justify-center gap-4 md:justify-end">
+        <div className="mt-16 flex flex-col gap-4 border-t border-border pt-6 text-xs uppercase tracking-[0.16em] text-ink-muted md:flex-row md:items-center md:justify-between">
+          <p>© 2026 la petite.elli — all quiet rights reserved.</p>
+          <div className="flex items-center gap-5">
             {socialLinks.map(({ label, href, icon: Icon }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="hover:text-ink-primary">
                 <Icon className="h-4 w-4" />

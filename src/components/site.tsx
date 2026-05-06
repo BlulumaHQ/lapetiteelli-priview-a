@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Facebook, Instagram, Menu, MessageCircle, Music2, ScanLine, X } from "lucide-react";
+import { Facebook, Instagram, Menu, MessageCircle, Music2, X } from "lucide-react";
 import * as React from "react";
 
 import logoImage from "@/assets/logo-la-petite-elli-boutique.png";

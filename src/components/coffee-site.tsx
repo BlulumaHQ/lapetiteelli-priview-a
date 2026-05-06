@@ -212,94 +212,126 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="section-space bg-surface-strong">
-        <div className="container-editorial grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-18">
-          <EditorialReveal className="space-y-6">
-            <SectionLabel>About</SectionLabel>
-            <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-              A story shaped by coffee, art, and design.
-            </h2>
-            <div className="space-y-5 text-base leading-[1.9] text-ink-body md:text-[17px]">
-              <p>
-                La petite.elli began as a quiet expression of everyday rituals — a cup of coffee, a moment of stillness, a slower way of living.
-              </p>
-              <p>
-                Each blend is created in small batches, not just to be consumed, but to be experienced — something to return to, again and again.
-              </p>
-              <p>
-                The packaging carries original artwork by the founder’s father, adding a subtle emotional layer to each product.
-              </p>
-              <p>
-                The website reflects the same intention — calm, minimal, and quietly refined.
-              </p>
-              <p>Together, coffee, art, and design form a single experience.</p>
-            </div>
+      {/* Curated Everyday Living */}
+      <section className="section-space bg-cream-soft">
+        <div className="container-editorial grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
+          <EditorialReveal>
+            <figure className="space-y-3">
+              <img
+                src={lifestyleSteamWindow}
+                alt="A warm cup of coffee resting on stacked Kinfolk volumes by a quiet window."
+                className="aspect-[4/5] w-full object-cover"
+                loading="lazy"
+              />
+              <figcaption className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+                Morning light, Volume VII
+              </figcaption>
+            </figure>
           </EditorialReveal>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {galleryWorks.map((work, index) => (
-              <EditorialReveal key={work.title} delay={index * 0.05}>
-                <figure className="space-y-3">
-                  <img
-                    src={work.image}
-                    alt={work.title}
-                    className="aspect-[4/5] w-full object-cover"
-                    loading="lazy"
-                  />
-                  <figcaption className="space-y-1 border-t border-border pt-3">
-                    <p className="font-serif text-2xl font-light text-ink-primary">{work.title}</p>
-                    <p className="text-sm text-ink-muted">{work.subtitle}</p>
-                  </figcaption>
+          <div className="flex flex-col justify-between gap-10">
+            <EditorialReveal className="space-y-5">
+              <SectionLabel>Curated Everyday Living</SectionLabel>
+              <h2 className="font-serif text-4xl font-light leading-[1.05] text-ink-primary md:text-5xl">
+                A boutique of quiet objects for the slow hours.
+              </h2>
+              <p className="text-base leading-[1.85] text-ink-body md:text-[17px]">
+                la petite.elli is a small lifestyle house gathering coffee, tea, brewing tools, and home objects chosen for one feeling — the warmth of an unhurried morning. Each piece is selected for the way it ages in your hands, not for the way it photographs.
+              </p>
+              <p className="text-base leading-[1.85] text-ink-body md:text-[17px]">
+                We are building a calmer cabinet of everyday things, one season at a time.
+              </p>
+            </EditorialReveal>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <EditorialReveal delay={0.05}>
+                <figure className="space-y-2">
+                  <img src={lifestyleBeansJar} alt="A glazed brown stoneware mug atop two Kinfolk magazines." className="aspect-[3/4] w-full object-cover" loading="lazy" />
+                  <figcaption className="text-xs uppercase tracking-[0.16em] text-ink-muted">A vessel that wears in</figcaption>
                 </figure>
               </EditorialReveal>
-            ))}
+              <EditorialReveal delay={0.1}>
+                <figure className="space-y-2">
+                  <img src={lifestyleCakeCup} alt="Olive cake and dark coffee on a linen runner with dried branches." className="aspect-[3/4] w-full object-cover" loading="lazy" />
+                  <figcaption className="text-xs uppercase tracking-[0.16em] text-ink-muted">An afternoon paused</figcaption>
+                </figure>
+              </EditorialReveal>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* The Collections */}
       <section className="section-space bg-background">
-        <div className="container-editorial grid gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:items-start">
-          <EditorialReveal className="space-y-4">
-            <SectionLabel>Journal</SectionLabel>
-            <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
-              Notes on a slower life
-            </h2>
-            <p className="max-w-[520px] text-base leading-[1.8] text-ink-body">
-              Stories on coffee, objects, art, and everyday living.
+        <div className="container-editorial space-y-12">
+          <EditorialReveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-[560px] space-y-4">
+              <SectionLabel>The Collections</SectionLabel>
+              <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
+                A house in five chapters.
+              </h2>
+            </div>
+            <p className="max-w-[420px] text-sm leading-7 text-ink-muted">
+              Coffee began the story. Tea, tools, and quiet objects for the home are arriving in their own season.
             </p>
           </EditorialReveal>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {journalEntries.map((entry, index) => (
-              <EditorialReveal key={entry.title} delay={index * 0.04}>
-                <article className="space-y-4">
-                  <img
-                    src={entry.image}
-                    alt={entry.title}
-                    className="aspect-[3/4] w-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="border-t border-border pt-4">
-                    <h3 className="font-serif text-3xl font-light text-ink-primary">{entry.title}</h3>
-                  </div>
-                </article>
-              </EditorialReveal>
-            ))}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            <CollectionCard image={editorialMachine} eyebrow="Now Pouring" title="Coffee" caption="Eight small-batch flavors." to="/collection" />
+            <CollectionCard image={lifestyleCupMagazine} eyebrow="Soon" title="Tea" caption="A quieter afternoon ritual." />
+            <CollectionCard image={lifestyleBeansJar} eyebrow="Soon" title="Home Objects" caption="Vessels for slower meals." />
+            <CollectionCard image={lifestyleSteamWindow} eyebrow="Soon" title="Brewing Tools" caption="The simple instruments of pour." />
+            <CollectionCard image={lifestyleCakeCup} eyebrow="Seasonal" title="Seasonal Living" caption="Curated pieces, twice a year." />
           </div>
-          <EditorialReveal>
+        </div>
+      </section>
+
+      {/* Stories & Rituals */}
+      <section className="section-space bg-surface-strong">
+        <div className="container-editorial space-y-12">
+          <EditorialReveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-[560px] space-y-4">
+              <SectionLabel>Stories &amp; Rituals</SectionLabel>
+              <h2 className="font-serif text-4xl font-light leading-tight text-ink-primary md:text-5xl">
+                Notes from a slower kitchen.
+              </h2>
+            </div>
             <Button variant="editorialGhost" size="editorial" asChild>
               <Link to="/journal">
-                Read Journal <ArrowRight className="h-4 w-4" />
+                Read the Journal <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </EditorialReveal>
+
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
+            <EditorialReveal>
+              <article className="space-y-5">
+                <img src={editorialBarista} alt="A barista handing a wrapped coffee bag to a customer in a sunlit boutique." className="aspect-[4/3] w-full object-cover" loading="lazy" />
+                <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">Featured · Issue No. 04</p>
+                <h3 className="font-serif text-3xl font-light leading-tight text-ink-primary md:text-4xl">
+                  The Quiet Ritual of Morning Coffee
+                </h3>
+                <p className="max-w-[560px] text-base leading-[1.85] text-ink-body">
+                  Why the first ten minutes after waking, spent with warm cup in hand, set the temperature of an entire day — a short essay on attention.
+                </p>
+              </article>
+            </EditorialReveal>
+            <div className="flex flex-col gap-10">
+              <EditorialReveal delay={0.05}>
+                <article className="space-y-3">
+                  <img src={editorialKitchen} alt="Two single-origin coffee bags on a sunlit kitchen counter." className="aspect-[4/5] w-full object-cover" loading="lazy" />
+                  <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">Living</p>
+                  <h3 className="font-serif text-2xl font-light text-ink-primary">Why warm lighting changes a home.</h3>
+                </article>
+              </EditorialReveal>
+              <EditorialReveal delay={0.1}>
+                <article className="space-y-3">
+                  <img src={editorialShelf} alt="A row of coffee bags lined up on a wooden shelf in soft afternoon light." className="aspect-[4/5] w-full object-cover" loading="lazy" />
+                  <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">Objects</p>
+                  <h3 className="font-serif text-2xl font-light text-ink-primary">The pieces we keep for years.</h3>
+                </article>
+              </EditorialReveal>
+            </div>
+          </div>
         </div>
       </section>
-    </>
-  );
-}
-
-export function ShopPage() {
   return <CollectionPage />;
 }
 

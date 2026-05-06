@@ -718,6 +718,39 @@ export function WellnessPage() {
   return <HomePage />;
 }
 
+function CollectionCard({
+  image,
+  eyebrow,
+  title,
+  caption,
+  to,
+}: {
+  image: string;
+  eyebrow: string;
+  title: string;
+  caption: string;
+  to?: "/collection";
+}) {
+  const inner = (
+    <div className="group block space-y-4">
+      <div className="relative overflow-hidden">
+        <img src={image} alt={title} className="aspect-[3/4] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" loading="lazy" />
+        <div className="absolute inset-0 bg-ink-primary/0 transition-colors duration-700 group-hover:bg-ink-primary/10" />
+      </div>
+      <div className="space-y-1.5">
+        <p className="text-[10px] uppercase tracking-[0.2em] text-ink-muted">{eyebrow}</p>
+        <h3 className="font-serif text-2xl font-light text-ink-primary">{title}</h3>
+        <p className="text-xs leading-5 text-ink-muted">{caption}</p>
+      </div>
+    </div>
+  );
+  return to ? (
+    <Link to={to}>{inner}</Link>
+  ) : (
+    <div className="cursor-default opacity-95">{inner}</div>
+  );
+}
+
 function ProductCard({ coffee, index = 0 }: { coffee: Coffee; index?: number }) {
   return (
     <div className="space-y-4 sm:space-y-5">

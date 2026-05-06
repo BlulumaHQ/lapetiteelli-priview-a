@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { EditorialReveal, HeroReveal, SEO, SectionLabel } from "@/components/site";
 import aboutGalleryOne from "@/assets/about-gallery-1.jpg";
 import aboutGalleryTwo from "@/assets/about-gallery-2.jpg";
+import heroBags01 from "@/assets/hero-bags-01.webp";
+import heroBags02 from "@/assets/hero-bags-02.webp";
 import dailyStrip from "@/assets/daily-strip.jpg";
 import eveningStrip from "@/assets/evening-strip.jpg";
 import bagBreakfast from "@/assets/bag-breakfast.webp";
@@ -19,7 +21,7 @@ import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 type Coffee = (typeof coffees)[number];
 
@@ -127,11 +129,7 @@ export function HomePage() {
       />
 
       <section className="relative flex min-h-screen items-center overflow-hidden bg-background">
-        <img
-          src={aboutGalleryOne}
-          alt="La petite.elli editorial hero artwork"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
+        <HeroSlideshow slides={[heroBags01, heroBags02]} />
         <div className="cinematic-overlay absolute inset-0" />
 
         <div className="container-editorial relative z-10 w-full pb-20 pt-24 md:pb-24 md:pt-28">

@@ -182,9 +182,9 @@ function PageLoader() {
       )}
     >
       <div className="flex flex-col items-center gap-6">
-        <Logo size="md" className="w-[200px] animate-[pageLoaderPulse_1.6s_ease-in-out_infinite] md:w-[240px]" />
+        <Logo size="md" className="w-[200px] origin-center animate-[pageLoaderBreath_2s_ease-in-out_infinite] md:w-[240px]" />
       </div>
-      <style>{`@keyframes pageLoaderPulse{0%,100%{opacity:.55}50%{opacity:1}}`}</style>
+      <style>{`@keyframes pageLoaderBreath{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}`}</style>
     </div>
   );
 }

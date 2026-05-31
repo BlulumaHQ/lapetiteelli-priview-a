@@ -78,8 +78,15 @@ export function EditorialReveal({
   style?: React.CSSProperties;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = React.useState(false);
 
-  if (prefersReducedMotion) {
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // During SSR and the first client render, render a plain visible div so the
+  // initial paint matches the final layout — no flash of empty/shifted sections.
+  if (!mounted || prefersReducedMotion) {
     return (
       <div className={className} style={style}>
         {children}
@@ -103,8 +110,15 @@ export function EditorialReveal({
 
 export function HeroReveal({ children, className }: { children: React.ReactNode; className?: string }) {
   const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = React.useState(false);
 
-  if (prefersReducedMotion) {
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Render content visible in SSR + first render — avoids hero blanking out
+  // before JS hydrates.
+  if (!mounted || prefersReducedMotion) {
     return <div className={className}>{children}</div>;
   }
 

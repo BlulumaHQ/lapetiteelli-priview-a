@@ -105,7 +105,7 @@ function getCoffeeImage(index: number) {
 }
 
 function getCoffeePrice(slug: string) {
-  return coffeePrices[slug] ?? "$24";
+  return coffeePrices[slug] ?? "$28.99 CAD";
 }
 
 function getCoffeeSummary(coffee: Coffee) {

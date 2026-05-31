@@ -46,14 +46,14 @@ const productImages = [
 ] as const;
 
 const coffeePrices: Record<string, string> = {
-  breakfast: "$24",
-  sunrise: "$24",
-  "golden-hour": "$25",
-  "yirgacheffe-bloom": "$27",
-  "daily-ritual": "$24",
-  "happy-hour": "$25",
-  midnight: "$26",
-  "mandheling-noir": "$27",
+  breakfast: "$28.99 CAD",
+  sunrise: "$28.99 CAD",
+  "golden-hour": "$28.99 CAD",
+  "yirgacheffe-bloom": "$28.99 CAD",
+  "daily-ritual": "$28.99 CAD",
+  "happy-hour": "$28.99 CAD",
+  midnight: "$28.99 CAD",
+  "mandheling-noir": "$28.99 CAD",
 };
 
 const coffeeLabelImages: Record<string, string> = {

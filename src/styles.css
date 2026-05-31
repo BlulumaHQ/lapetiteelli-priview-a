@@ -2,6 +2,13 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Self-hosted fonts to avoid FOUT/garbled header on first load */
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource/cormorant-garamond/300.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/400-italic.css";
+
 @custom-variant dark (&:is(.dark *));
 
 /*

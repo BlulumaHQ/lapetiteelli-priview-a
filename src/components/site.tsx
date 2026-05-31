@@ -156,9 +156,43 @@ export function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow-label">{children}</p>;
 }
 
+function PageLoader() {
+  const [hidden, setHidden] = React.useState(false);
+  const [gone, setGone] = React.useState(false);
+
+  React.useEffect(() => {
+    const t = setTimeout(() => setHidden(true), 650);
+    return () => clearTimeout(t);
+  }, []);
+
+  React.useEffect(() => {
+    if (!hidden) return;
+    const t = setTimeout(() => setGone(true), 600);
+    return () => clearTimeout(t);
+  }, [hidden]);
+
+  if (gone) return null;
+
+  return (
+    <div
+      aria-hidden="true"
+      className={cn(
+        "pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-background transition-opacity duration-500",
+        hidden ? "opacity-0" : "opacity-100",
+      )}
+    >
+      <div className="flex flex-col items-center gap-6">
+        <Logo size="md" className="w-[200px] animate-[pageLoaderPulse_1.6s_ease-in-out_infinite] md:w-[240px]" />
+      </div>
+      <style>{`@keyframes pageLoaderPulse{0%,100%{opacity:.55}50%{opacity:1}}`}</style>
+    </div>
+  );
+}
+
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background text-ink-body">
+      <PageLoader />
       <SiteHeader />
       <main>{children}</main>
       <SiteFooter />

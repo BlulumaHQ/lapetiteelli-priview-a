@@ -3,7 +3,8 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Facebook, Instagram, Menu, MessageCircle, Music2, X } from "lucide-react";
 import * as React from "react";
 
-import logoImage from "@/assets/logo-la-petite-elli-boutique.png";
+import logoAsset from "@/assets/la-petite-elli-logo.svg.asset.json";
+const logoImage = logoAsset.url;
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 

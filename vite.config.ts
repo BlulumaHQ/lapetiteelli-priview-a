@@ -14,7 +14,7 @@ const STATIC = process.env.STATIC === "1";
 export default defineConfig(
   STATIC
     ? {
-        cloudflare: false,
+        nitro: false,
         tanstackStart: {
           spa: {
             enabled: true,

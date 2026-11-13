@@ -396,7 +396,7 @@ function SiteFooter() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-border pt-6 text-xs uppercase tracking-[0.16em] text-ink-muted md:flex-row md:items-center md:justify-between">
-          <p>© 2026 la petite.elli — all quiet rights reserved.</p>
+          <p>© 2026 la petite.elli — all quiet rights reserved. | Web Design by{" "}<a href="https://bluluma.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80">Bluluma Design</a></p>
           <div className="flex items-center gap-5">
             {socialLinks.map(({ label, href, icon: Icon }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="hover:text-ink-primary">
